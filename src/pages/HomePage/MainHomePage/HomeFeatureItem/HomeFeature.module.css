@@ -3,26 +3,29 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1 1 0%;
   padding: 2.5rem;
+  width:33%;
+  flex-grow: 0 1 auto;
 }
 
 .feature_icon {
-  width: 100px;
+  width: 150px;
   border: 10px solid #00bc77;
   border-radius: 50%;
   padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .feature_title {
   color: rgb(34, 34, 34);
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .feature_subtitle {
-  color: rgb(34, 34, 34);
+  color: #2c3e50;
+  font-weight: 500;
   font-size: 1rem;
   text-align: center;
 
