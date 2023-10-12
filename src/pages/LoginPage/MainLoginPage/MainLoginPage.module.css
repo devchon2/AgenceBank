@@ -1,5 +1,5 @@
 .bg_dark {
-  display: flex;
+  display: block;
   background-color: #12002b;
   flex-grow: 1;
 }
@@ -7,15 +7,74 @@
 
 
 .signIn_Container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  padding: 2rem;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
 }
 
+.title_Login_Icon{
+  display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.title{
+  font-size: 1.5em;
+  -webkit-margin-before: 0.83em;
+          margin-block-start: 0.83em;
+  -webkit-margin-after: 0.83em;
+          margin-block-end: 0.83em;
+}
+
+form{
+  display: block;
+  margin-top: 0em;
+}
+
+.input_Container{
+  display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+  
+
+}
+
+.label{
+  font-weight: bold
+}
+
+.input_Check_Container{
+  display:flex;
+}
+
+.input{
+  padding: 5px;
+    font-size: 1.2rem;
+}
+
+.label_Check{
+  font-weight: normal;
+  margin-margin-left:0.25rem;
+}
+
+.input_Check{
+  margin:3px 10px 3px 4px;
+}
+
+.button{
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  background-color: #00bc77;
+  color: #fff;
+  border:none;
+  text-decoration:underline;
+}

@@ -7,12 +7,14 @@ return (
 
 <main className={style.bg_dark}>
   < div className={style.signIn_Container}>
-  <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
+  <FontAwesomeIcon className={style.title_Login_Icon} icon={faUserCircle}/>
     <h1 className={style.title}>Sign In</h1>
-    <form className={style.form}>
+    <form >
+      <div className={style.input_Container}>
       <label className={style.label} htmlFor="username">
         Username
       </label>
+      
       <input
         className={style.input}
         type="text"
@@ -20,15 +22,32 @@ return (
         name="username"
         
       />
+      </div>
+      <div className={style.input_Container}>
       <label className={style.label} htmlFor="password">
         Password
       </label>
+    
       <input
         className={style.input}
         type="current-password"
         id="password"
         name="password"
       />
+      </div>
+      <div className={style.input_Check_Container}>
+      
+      <input
+        className={style.input_Check}
+        type="checkbox"
+        id="remember"
+        name="Remember me"
+      />
+      <label className={style.label_Check_} htmlFor="remember">
+        Remember me
+      </label>
+      </div>
+
       <div className={style.button_container}>
         <button className={style.button} type="submit">
           Sign in
