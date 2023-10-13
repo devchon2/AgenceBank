@@ -1,3 +1,14 @@
+.loginPage{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  width:100%;
+  width:100%;
+
+}
+
 .bg_dark {
   display: block;
   background-color: #12002b;

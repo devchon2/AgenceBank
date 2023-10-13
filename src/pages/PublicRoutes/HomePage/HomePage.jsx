@@ -1,4 +1,5 @@
-import style from './MainHomePage.module.css';
+
+import style from './HomePage.module.css'
 import Hero from './Hero/Hero.jsx';
 import iconChat from '../../../assets/icon-chat.png';
 import iconMoney from '../../../assets/icon-money.png';
@@ -29,7 +30,7 @@ const featuresArray = [
 
 
 
-export default function Main() {
+export default function HomePage() {
   return (
     <main className={style.main}>
     <Hero/>

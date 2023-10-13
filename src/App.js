@@ -1,16 +1,24 @@
 
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/HomePage/HomePage.jsx';
-import LoginPage from './pages/LoginPage/LoginPage.jsx';
-import ErrorPage from './pages/ErrorPage/ErrorPage.jsx';
+import LoginPage from './pages/PublicRoutes/LoginPage/LoginPage.jsx';
+import Home from './pages/PublicRoutes/HomePage/HomePage.jsx';
+import UserPage from './pages/UserPage/UserPage.jsx';
+import PublicLayout from './pages/PublicRoutes/PublicLayout/PublicLayout.jsx';
+import ErrorPage from './pages/PublicRoutes/ErrorPage/ErrorPage.jsx';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/Login" element={<LoginPage/>} />
-      <Route path="*" element={<ErrorPage/>} />
+      <Route element={<PublicLayout />} >
+        <Route index element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/*" element={<ErrorPage />} />
+      </Route>
+    
+      <Route path="/user" element={<UserPage />} />
     </Routes>
+
   )
 }
 
