@@ -5,6 +5,10 @@ import Logo from '../../../assets/argentBankLogo.png';
 
 import { Link } from 'react-router-dom';
 
+const HandleLogout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('isAuth');
+}
 
 export default function Header({name}) {
   return (
@@ -18,7 +22,7 @@ export default function Header({name}) {
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
       Tony
       </Link>
-      <Link to="/login" className={style.header_Link}>
+      <Link to="/login" className={style.header_Link} onClick={HandleLogout}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faSignOut}/>
         Sign Out
       </Link>

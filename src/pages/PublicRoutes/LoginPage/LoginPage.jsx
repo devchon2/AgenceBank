@@ -1,5 +1,5 @@
 import style  from './LoginPage.module.css'
-import HandleForm from '../../../Services/login.service.js';
+import HandleForm from '../../../Services/login.service.jsx';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 

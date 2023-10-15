@@ -1,8 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
-import React from 'react';
-const HandleForm = async (e) => {
-  e.preventDefault();
+
+async function get_Token() {
   let isAuth = false;
 
   axios.defaults.baseURL = 'http://localhost:3001';
@@ -12,10 +11,8 @@ const HandleForm = async (e) => {
   const basePath = '/api/v1';
 
   console.log(email, password);
-  localStorage.setItem('email', email);
-  localStorage.setItem('password', password);
-  await axios.request(
-    {
+ 
+  await axios.request({
       headers: {
         'Content-Type': 'application/json',
       },
@@ -25,8 +22,7 @@ const HandleForm = async (e) => {
         'email': email,
         'password': password
       },
-    }
-  ).then(
+    }).then(
     (response) => {
       console.log(response.data);
       return response.data;
@@ -35,17 +31,36 @@ const HandleForm = async (e) => {
       const { status, body, message, } = data;
       const { token } = body
       if (status === 200) {
-        console.log(message)
-        isAuth = true;
-        localStorage.setItem('isAuth', isAuth);
-        console.log('authentication:', isAuth);
+        isAuth = true; 
         localStorage.setItem('token', token);
-        console.log('token:', token);
-        return (<Navigate to={'/user'}/>);
+        localStorage.setItem('isAuth', isAuth);
+        
+        console.log('token', token);
+        console.log('isAuth', isAuth);
       }
-    }).catch((error) => {
+      return isAuth;
+  }).catch((error) => {
       console.log(error);
     });
+    return isAuth;
+  }
+
+const HandleForm = async (e) => {
+  e.preventDefault();
+  const token = await get_Token()
+
+  console.log('token ok',   token);
+
+  if (token) {
+    return(
+    window.location.href = '/user'
+    )
+  }
+  else {
+    return (
+    window.location.href = "/login"
+    )
+  }
 }
 
 
