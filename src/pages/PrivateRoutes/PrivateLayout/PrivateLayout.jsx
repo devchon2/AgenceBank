@@ -1,7 +1,7 @@
-import style from './PublicLayout.module.css'
+import style from './PrivateLayout.module.css'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from '../Header/Header.jsx'
+import Header from '../PrivateHeader/PrivateHeader.jsx'
 import Footer from '../../../Components/Footer/Footer.jsx'
 
 

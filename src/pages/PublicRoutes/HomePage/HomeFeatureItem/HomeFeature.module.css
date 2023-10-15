@@ -1,11 +1,10 @@
 .feature_item{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
   padding: 2.5rem;
-  width:33%;
-  flex-grow: 0 1 auto;
 }
 
 .feature_icon {

@@ -2,8 +2,9 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/PublicRoutes/LoginPage/LoginPage.jsx';
 import Home from './pages/PublicRoutes/HomePage/HomePage.jsx';
-import UserPage from './pages/UserPage/UserPage.jsx';
+import UserPage from './pages/PrivateRoutes/UserPage/UserPage.jsx';
 import PublicLayout from './pages/PublicRoutes/PublicLayout/PublicLayout.jsx';
+import PrivateLayout from './pages/PrivateRoutes/PrivateLayout/PrivateLayout.jsx';
 import ErrorPage from './pages/PublicRoutes/ErrorPage/ErrorPage.jsx';
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>
-    
-      <Route path="/user" element={<UserPage />} />
+      <Route element={<PrivateLayout />} >
+        <Route path="/user" element={<UserPage />} />
+        <Route path="/*" element={<ErrorPage />} />
+      </Route>
     </Routes>
+  )};
 
-  )
-}
-
-export default App;
+export default App; 
