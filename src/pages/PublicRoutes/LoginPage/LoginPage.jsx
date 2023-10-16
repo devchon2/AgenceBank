@@ -1,10 +1,27 @@
 import style  from './LoginPage.module.css'
-import HandleForm from '../../../Services/login.service.jsx';
+import { get_Token } from '../../../Services/login.service.jsx'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function LoginPage() {
   
+  const HandleForm = async (e) => {
+    e.preventDefault();
+    const isAuth = await get_Token()
+    const token = localStorage.getItem('token');
+  
+    console.log('token ok',   isAuth);
+  
+    if (isAuth === true && token !== null) {
+      return(
+      window.location.href = '/user'
+      )
+    } else {
+      return (
+      window.location.href = "/login"
+      )
+    }
+  }
 
 return( 
   

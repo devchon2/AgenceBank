@@ -3,6 +3,7 @@
   flex-direction: column;
   width:100%;
   font-family:  Avenir, Helvetica, Arial, sans-serif;
+  flex-grow:1;
 
 }
 

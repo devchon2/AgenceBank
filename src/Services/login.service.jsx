@@ -1,4 +1,3 @@
-import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 async function get_Token() {
@@ -28,7 +27,7 @@ async function get_Token() {
       return response.data;
 
     }).then((data) => {
-      const { status, body, message, } = data;
+      const { status, body } = data;
       const { token } = body
       if (status === 200) {
         isAuth = true; 
@@ -45,26 +44,10 @@ async function get_Token() {
     return isAuth;
   }
 
-const HandleForm = async (e) => {
-  e.preventDefault();
-  const token = await get_Token()
-
-  console.log('token ok',   token);
-
-  if (token) {
-    return(
-    window.location.href = '/user'
-    )
-  }
-  else {
-    return (
-    window.location.href = "/login"
-    )
-  }
-}
 
 
 
 
 
-export default HandleForm;
+
+export { get_Token };
