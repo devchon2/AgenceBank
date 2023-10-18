@@ -1,5 +1,5 @@
 import style  from './LoginPage.module.css'
-import { get_Token } from '../../../Services/login.service.jsx'
+import { get_Token } from '../../../Services/login.service.js'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 

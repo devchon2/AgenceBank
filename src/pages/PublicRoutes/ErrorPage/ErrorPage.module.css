@@ -22,15 +22,15 @@
   text-shadow : 2px 2px 4px #CCCCCC;
 }
 
-.firstLetter{
+.letter:nth-child(1){
   color: #c3ecd9;
 }
 
-.secondLetter{
+.letter:nth-child(2){
   color: #35c58a;
 }
 
-.lastLetter{
+.letter:nth-child(3){
   color: #005834;
 }
 

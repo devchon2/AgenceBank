@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 const HandleLogout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('isAuth');
+  localStorage.removeItem('user');
 }
 
 export default function Header({name}) {
