@@ -3,25 +3,24 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import PrivateHeader from '../PrivateHeader/PrivateHeader.jsx'
 import Footer from '../../../Components/Footer/Footer.jsx'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { fetch_UserInfos } from '../../../Services/login.service.js'
-import {  get } from '../../../Services/context.reducer.js'
-import { Navigate } from 'react-router-dom'
+import {  getToken } from '../../../Services/context.reducer.js'
 
 
 export default function PrivateLayout() {  
 
-    const token = get('token')
+    const token = getToken()
     
     useEffect(() => {
     console.log('entrée dans useeffect')
     
-    const infos = async () => {
+    const get_infos = async () => {
       return await fetch_UserInfos(token).catch((err) => {
         console.log('erreur dans infos', err)
       })
     }
-    infos()
+    get_infos()
     console.log('sortie de useeffect',)
     }, [token])
 

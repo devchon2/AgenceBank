@@ -1,5 +1,5 @@
 import style from './UserPage.module.css'
-import { get, set } from '../../../Services/context.reducer.js'
+import { getToken, getFtName, getLtName,setFtName,setLtName } from '../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../Services/login.service.js'
 import { useState, useEffect } from 'react'
 import CountComponent from './CountComponents/CountComponent.jsx'
@@ -27,8 +27,8 @@ const accounts = [
 
 
 export default function UserPage() {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')  
+  const [firstName, setFirstName] = useState(getFtName())
+  const [lastName, setLastName] = useState(getLtName())  
 
   
 
@@ -70,30 +70,17 @@ function handle_Cancel_Btn() {
 
 }
 
-function handle_NewName(e) {
+async function handle_NewName(e) {
   e.preventDefault()
-  const token = get('token')
+  const token = getToken()
   console.log('token', token)
-  const set_NewName = async () => {
-    const putInfos = await put_NewInfos(token, firstName, lastName).catch((err) => console.log(err))
-    
-    
-    setFirstName(firstName)
-    setLastName(lastName)
-    return putInfos
-    }
-  
-  set_NewName()      
+  await put_NewInfos(token, firstName, lastName)  
+  setFirstName(firstName)
+  setLastName(lastName)   
   handle_Cancel_Btn()
 }
 
-useEffect(() => {
-  const fName = get('firstName')
-  const lName = get('lastName')
-  setFirstName(fName)
-  setLastName(lName)
-}
-, [firstName, lastName])
+
 
 
 
@@ -111,7 +98,7 @@ useEffect(() => {
             <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
 
               <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setFirstName(e.target.value)}/>
-              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) => setLastName(e.target.value)} />
+              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) =>  setLastName(e.target.value)} />
             </div>
             <div className={style.userTitleButtonContainer}>
               <button key={Math.random()} className={style.userTitleButton} type='submit' onClick={handle_NewName}>Save</button>

@@ -4,15 +4,14 @@ import { faUserCircle, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import Logo from '../../../assets/argentBankLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { get } from '../../../Services/context.reducer.js'
 import { useEffect, useState } from 'react'
+import { getFtName } from '../../../Services/context.reducer.js'
 
 
 
 export default function PrivateHeader() {
-  const [firstName, setFirstName] = useState(get('firstName'))
-
-  
+  const [firstName, setFirstName] = useState('')
+  const name = getFtName()
 
   const navigate = useNavigate();
   const HandleLogout = () => {
@@ -23,7 +22,10 @@ export default function PrivateHeader() {
     navigate('/login');
   }
 
-  
+  useEffect(() => {
+    setFirstName(name)
+
+  }, [name])
 
   
 
