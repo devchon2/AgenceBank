@@ -1,6 +1,36 @@
 import style from './UserPage.module.css'
 import { get, set } from '../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../Services/login.service.js'
+import { useState, useEffect } from 'react'
+import CountComponent from './CountComponents/CountComponent.jsx'
+
+const accounts = [
+  {
+    id: 1,
+    title: 'Argent Bank Checking (x8349)',
+    amount: '2,082.79',
+    balanceType: 'Available Balance',
+  },
+  {
+    id: 2,
+    title: 'Argent Bank Savings (x6712)',
+    amount: '10,928.42',
+    balanceType: 'Available Balance',
+  },
+  {
+    id: 3,
+    title: 'Argent Bank Credit Card (x8349)',
+    amount: '184.30',
+    balanceType: 'Current Balance',
+  },
+]
+
+
+export default function UserPage() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')  
+
+  
 
 function handle_Edit_Btn() {
   const formContainer = document.getElementById('userTitleForm')
@@ -22,6 +52,7 @@ function handle_Edit_Btn() {
 
 
 }
+
 function handle_Cancel_Btn() {
   const formContainer = document.getElementById('userTitleForm')
   const title = document.getElementById('userTitleName')
@@ -43,26 +74,29 @@ function handle_NewName(e) {
   e.preventDefault()
   const token = get('token')
   console.log('token', token)
-
-  const firstName = document.getElementById('firstName').value ? document.getElementById('firstName').value : get('firstName')
-  console.log('firstName', firstName)
-
-  const lastName = document.getElementById('lastName').value ? document.getElementById('lastName').value : get('lastName')
-
   const set_NewName = async () => {
-    const putInfos = await put_NewInfos(token, firstName, lastName)
-    if (putInfos) {
-      set('firstName', firstName)
-      set('lastName', lastName)
-      handle_Cancel_Btn()
+    const putInfos = await put_NewInfos(token, firstName, lastName).catch((err) => console.log(err))
+    
+    
+    setFirstName(firstName)
+    setLastName(lastName)
+    return putInfos
     }
-  }
-  set_NewName()
+  
+  set_NewName()      
+  handle_Cancel_Btn()
 }
 
-export default function UserPage() {
-  const firstName = get('firstName')
-  const lastName = get('lastName')
+useEffect(() => {
+  const fName = get('firstName')
+  const lName = get('lastName')
+  setFirstName(fName)
+  setLastName(lName)
+}
+, [firstName, lastName])
+
+
+
 
 
   return (
@@ -76,8 +110,8 @@ export default function UserPage() {
 
             <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
 
-              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} />
-              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} />
+              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setFirstName(e.target.value)}/>
+              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) => setLastName(e.target.value)} />
             </div>
             <div className={style.userTitleButtonContainer}>
               <button key={Math.random()} className={style.userTitleButton} type='submit' onClick={handle_NewName}>Save</button>
@@ -93,6 +127,12 @@ export default function UserPage() {
             onClick={handle_Edit_Btn}>Edit Name </button>
         </div>
       </div>
+
+      
+        {accounts.map((account) => (
+          <CountComponent key={account.id} count={account.amount} title={account.title} balanceType={account.balanceType} />
+        ))}
+      
     </main>
   )
 }

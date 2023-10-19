@@ -9,20 +9,24 @@ import {  get } from '../../../Services/context.reducer.js'
 import { Navigate } from 'react-router-dom'
 
 
-export default function PrivateLayout() {
-  
+export default function PrivateLayout() {  
+
     const token = get('token')
+    
     useEffect(() => {
     console.log('entrée dans useeffect')
     
     const infos = async () => {
-      return await fetch_UserInfos().catch((err) => {
+      return await fetch_UserInfos(token).catch((err) => {
         console.log('erreur dans infos', err)
       })
     }
     infos()
-    console.log('sortie de infos')}, [])
+    console.log('sortie de useeffect',)
+    }, [token])
 
+    
+    
   if (!token) {
     return (
       <div>
@@ -32,7 +36,7 @@ export default function PrivateLayout() {
   }
   return (
       <div className={style.layout}>
-      <PrivateHeader  />
+      <PrivateHeader />
       <Outlet />
       <Footer />
     </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {get, set } from '../Services/context.reducer.js'
+import { set } from '../Services/context.reducer.js'
 
 async function fetch_Token(password,email) {
 
@@ -59,11 +59,9 @@ async function fetch_UserInfos(token) {
     })
 }
 
-async function put_NewInfos() {
+async function put_NewInfos(token, firstName, lastName) {
 
-  const token = get('token')
-  const firstName = document.getElementById('firstName').value
-  const lastName = document.getElementById('lastName').value
+  
   axios.request( 
     {
       method: 'put',
@@ -79,16 +77,6 @@ async function put_NewInfos() {
     }).then((response) => {
       console.log('reponse du put',response.data)    
       return response.data
-    }).then((data) => {
-      const {body} = data
-
-      console.log('body',body)
-      const { firstName, lastName } = body
-      set('firstName', firstName)
-      set('lastName', lastName)
-      return true
-    }).catch((error) => {
-      console.log(error)
     })
   }
 

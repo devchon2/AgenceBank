@@ -10,7 +10,10 @@ import { useEffect, useState } from 'react'
 
 
 export default function PrivateHeader() {
-  const [firstName, setFirstName] = useState('')
+  const [firstName, setFirstName] = useState(get('firstName'))
+
+  
+
   const navigate = useNavigate();
   const HandleLogout = () => {
     localStorage.removeItem('token');
@@ -19,11 +22,8 @@ export default function PrivateHeader() {
     localStorage.removeItem('id');
     navigate('/login');
   }
-     const fName = get('firstName')
 
-  useEffect(() => {
-    setFirstName(fName)
-  }, [fName])
+  
 
   
 
