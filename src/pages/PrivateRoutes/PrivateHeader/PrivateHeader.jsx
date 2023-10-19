@@ -2,18 +2,31 @@ import style from './PrivateHeader.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import Logo from '../../../assets/argentBankLogo.png';
-
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { get } from '../../../Services/context.reducer.js'
+import { useEffect, useState } from 'react'
 
-const HandleLogout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('isAuth');
-  localStorage.removeItem('firstName');
-  localStorage.removeItem('lastName');
-  localStorage.removeItem('id');
-}
 
-export default function PrivateHeader({firstName}) {
+
+export default function PrivateHeader() {
+  const [firstName, setFirstName] = useState('')
+  const navigate = useNavigate();
+  const HandleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('id');
+    navigate('/login');
+  }
+     const fName = get('firstName')
+
+  useEffect(() => {
+    setFirstName(fName)
+  }, [fName])
+
+  
+
   return (
     <header className={style.header}>
       <Link to="/" className={style.header_Logo_Link}>

@@ -3,6 +3,7 @@ import { fetch_Token } from '../../../Services/login.service.js'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 
@@ -10,11 +11,13 @@ import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
 
   const handle_Form = async (e) => {
     console.log('entrée dans handleform')
     e.preventDefault()
-    const token = await fetch_Token().catch((err) => {
+    const token = await fetch_Token(password, email).catch((err) => {
       console.log('erreur dans handleform', err)
 
     })
@@ -56,6 +59,9 @@ export default function LoginPage() {
               id="userMail"
               name="username"
               autoComplete="off"
+              onChange={(e) => {
+                setEmail(e.target.value)
+                console.log('email', email)}}
             />
 
           </div>
@@ -70,7 +76,9 @@ export default function LoginPage() {
               autoComplete="off"
               id="userPassword"
               name="password"
-
+              onChange={(e) => {setPassword(e.target.value)
+              console.log('password', password)}
+              }
             />
             <p id='forgot' className={style.hidden}>Your credentials are invalids!</p>
           </div>
@@ -87,7 +95,7 @@ export default function LoginPage() {
           </div>
 
           <div className={style.button_container}>
-            <button className={style.button} type="button" onClick={handle_Form}  >
+            <button className={style.button} type="button" onClick={handle_Form} >
               Sign in
             </button>
           </div>

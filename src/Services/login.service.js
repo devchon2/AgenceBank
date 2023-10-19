@@ -1,12 +1,11 @@
 import axios from 'axios';
 import {get, set } from '../Services/context.reducer.js'
 
-async function fetch_Token() {
+async function fetch_Token(password,email) {
 
   axios.defaults.baseURL = 'http://localhost:3001';
 
-  const email = document.getElementById('userMail').value;
-  const password = document.getElementById('userPassword').value;
+  
   const basePath = '/api/v1';
 
 
@@ -33,9 +32,9 @@ async function fetch_Token() {
 }
 
 
-async function fetch_UserInfos() {
+async function fetch_UserInfos(token) {
   
-  const token = get('token')
+  
   axios.defaults.baseURL = 'http://localhost:3001';
   const basePath = '/api/v1';
 
@@ -56,12 +55,8 @@ async function fetch_UserInfos() {
         set('lastName',lastName)
         set('id',id)
         return true
-      } else {
-        return false
-      }
-    }).catch((error) => {
-      console.log(error);
-    });
+      } 
+    })
 }
 
 async function put_NewInfos() {

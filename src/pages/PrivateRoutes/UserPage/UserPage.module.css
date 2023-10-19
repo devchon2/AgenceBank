@@ -28,13 +28,13 @@
 }
 
 .editBtnContainer{
-  
   justify-content:center;
-  margin:2rem;
+  align-items:center;
 }
 
+
+
 .button{
-  display:flex;
   
   border-color: #00bc77;
     background-color: #00bc77;
@@ -53,7 +53,6 @@
 }
 
 .userTitleInputContainer{
-  margin:3rem;
   align-items:center;
   justify-content:center;
   margin-bottom:1rem;
@@ -61,10 +60,10 @@
 
 .userTitleButtonContainer{
   display:flex;
-  margin:3rem;
+  
   align-items:center;
   justify-content:center;
-  margin:1rem;
+  margin:0 1rem;
   margin-bottom:1rem;
 }
 
