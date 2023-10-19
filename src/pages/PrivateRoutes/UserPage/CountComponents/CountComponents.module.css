@@ -37,13 +37,17 @@
 }
 
 .transactionBtn{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 200px;
     padding: 8px;
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 1rem;
-    border-color: #00bc77;
+    border-bottom: 2px #2c3e50 solid;
+    border-right: 2px #2c3e50 solid;
     background-color: #00bc77;
     color: #fff;
+    text-decoration: none;
 }

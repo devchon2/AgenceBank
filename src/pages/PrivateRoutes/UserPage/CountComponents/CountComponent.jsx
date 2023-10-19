@@ -1,4 +1,5 @@
 import style from './CountComponents.module.css'
+import { Link } from 'react-router-dom'
 
 export default function CountComponent({count, title, balanceType}) {
   return (
@@ -9,7 +10,8 @@ export default function CountComponent({count, title, balanceType}) {
           <p className={style.accountDescription}>{balanceType}</p>
         </div>
         <div className={style.accountCta}>
-          <button className={style.transactionBtn}>View transactions</button>
+          <Link className={style.transactionBtn} to='/profile'>View transactions
+          </Link>
         </div>
       </section>
   )
