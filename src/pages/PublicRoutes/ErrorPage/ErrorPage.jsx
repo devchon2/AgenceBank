@@ -1,7 +1,7 @@
 
 import style from "./ErrorPage.module.css";
 
-export default function ErrorPage({error, message}) {
+export default function ErrorPage({error = '400', message = "Oups! cette page n'est pas disponible actuellement"}) {
   const  number  = [...error]
  
   return (

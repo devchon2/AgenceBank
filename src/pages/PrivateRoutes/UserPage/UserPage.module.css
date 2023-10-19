@@ -27,7 +27,15 @@
     font-weight: bold;
 }
 
+.editBtnContainer{
+  
+  justify-content:center;
+  margin:2rem;
+}
+
 .button{
+  display:flex;
+  
   border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;

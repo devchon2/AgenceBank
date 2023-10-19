@@ -8,10 +8,12 @@ import { Link } from 'react-router-dom';
 const HandleLogout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('isAuth');
-  localStorage.removeItem('user');
+  localStorage.removeItem('firstName');
+  localStorage.removeItem('lastName');
+  localStorage.removeItem('id');
 }
 
-export default function Header({name}) {
+export default function PrivateHeader({firstName}) {
   return (
     <header className={style.header}>
       <Link to="/" className={style.header_Logo_Link}>
@@ -21,7 +23,7 @@ export default function Header({name}) {
       <nav className={style.header_Nav}>
       <Link to="/user" className={style.header_Link}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
-      Tony
+      {firstName}
       </Link>
       <Link to="/login" className={style.header_Link} onClick={HandleLogout}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faSignOut}/>

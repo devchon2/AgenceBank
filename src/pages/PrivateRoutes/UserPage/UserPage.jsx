@@ -1,8 +1,10 @@
 import style from './UserPage.module.css'
+import { get, set } from '../../../Services/context.reducer.js'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { put_NewInfos } from '../../../Services/login.service.js'
 
-function HandleClick(){
+function handle_Edit_Btn() {
   const formContainer = document.getElementById('userTitleForm')
   const title = document.getElementById('userTitleName')
   const editBtn = document.getElementById('editBtn')
@@ -12,91 +14,81 @@ function HandleClick(){
 
   formContainer.classList.add(style.visible)
   formContainer.classList.remove(style.hidden)
-  
+
   editBtn.classList.add(style.hidden)
   editBtn.classList.remove(style.visible)
 
-  console.log(formContainer)
-  console.log(title)
-  console.log(editBtn)
- }
+
+}
+function handle_Cancel_Btn() {
+  const formContainer = document.getElementById('userTitleForm')
+  const title = document.getElementById('userTitleName')
+  const editBtn = document.getElementById('editBtn')
+
+  title.classList.add(style.visible)
+  title.classList.remove(style.hidden)
+
+  formContainer.classList.add(style.hidden)
+  formContainer.classList.remove(style.visible)
+
+  editBtn.classList.add(style.visible)
+  editBtn.classList.remove(style.hidden)
+
+
+}
+
+function handle_NewName(e) {
+  e.preventDefault()
+  const token = get('token')
+  console.log('token', token)
+
+  const firstName = document.getElementById('firstName').value ? document.getElementById('firstName').value : get('firstName') 
+  console.log('firstName', firstName)
+  
+  const lastName = document.getElementById('lastName').value ? document.getElementById('lastName').value : get('lastName')
+
+  const set_NewName = async () => {
+     const putInfos = await put_NewInfos(token, firstName, lastName)
+    if (putInfos) {
+      set('firstName', firstName)
+      set('lastName', lastName)
+      handle_Cancel_Btn()      
+    }
+}
+  set_NewName()
+}
 
 export default function UserPage() {
-  const [user, setUser] = useState('')
-  const token = localStorage.getItem('token')
-  const isAuth = localStorage.getItem('isAuth')
-  useEffect(() => {
-
-    if (isAuth === false || token === null) {
-      window.location.href = '/login'
-    }
-
-    axios.defaults.baseURL = 'http://localhost:3001';
-    const basePath = '/api/v1';
-
-    axios.request({
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      method: 'post',
-      url: `${basePath}/user/profile`,
-    }).then(
-      (response) => {
-        console.log(response.data);
-        return response.data;
-      }).then((data) => {
-        const { status, body, } = data;
-        const { firstName, lastName, id } = body
-        if (status === 200) {
-          console.log('firstName', firstName);
-          console.log('lastName', lastName);
-          console.log('id', id)
-
-          setUser({ firstName: firstName, lastName: lastName, id: id })
-        }
-        return user;
-      }).catch((error) => {
-        console.log(error);
-      });
-  }
-    , [isAuth, token])
+  const firstName = get('firstName')
+  const lastName = get('lastName')
 
  
-
-  if (!user) {
-    return (
-      <div>
-        Loading...
-      </div>
-    )
-  }
   return (
     <main className={style.bg_dark}>
       <div className={style.hero}>
         <h1 className={style.title}>
           Welcome back
-          <span id='userTitleName' className={`${style.userTitleName} ${style.visible}`} >{`${user.firstName} ${user.lastName}`}!</span>
+          <span id='userTitleName' className={`${style.userTitleName} ${style.visible}`} >{`${firstName} ${lastName}`}!</span>
 
           <form id='userTitleForm' className={`${style.userTitleForm} ${style.hidden}`} >
 
             <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
 
-              <input type="text" id="firstName" placeholder={user.firstName} className={style.userTitleInput} />
-              <input type="text" id="lastName" placeholder={user.lastName} className={style.userTitleInput} />
+              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} />
+              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} />
             </div>
             <div className={style.userTitleButtonContainer}>
-              <button key={Math.random()} className={style.userTitleButton} type='submit'>Save</button>
-              <button key={Math.random()} className={style.userTitleButton} type='reset'>Cancel</button>
+              <button key={Math.random()} className={style.userTitleButton} type='submit' onClick={handle_NewName}>Save</button>
+              <button key={Math.random()} className={style.userTitleButton} type='reset' onClick={handle_Cancel_Btn}>Cancel</button>
             </div>
           </form>
 
 
         </h1>
 
-        <div className={style.button_container}>
+        <div id='editBtnContainer' className={style.bueditBtnContainer}>
           <button id='editBtn' className={style.button}
-          onClick={HandleClick}>Edit Name </button>
+            onClick={handle_Edit_Btn}>Edit Name </button>
         </div>
       </div>
     </main>

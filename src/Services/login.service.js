@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {get, set } from '../Services/context.reducer.js'
-import { Navigate } from 'react-router-dom';
 
 async function fetch_Token() {
 
@@ -11,7 +10,7 @@ async function fetch_Token() {
   const basePath = '/api/v1';
 
 
-  const tokenOk = await axios.request({
+  return await axios.request({
     headers: {
       'Content-Type': 'application/json',
     },
@@ -27,20 +26,16 @@ async function fetch_Token() {
       const {  body } = data;
       const { token } = body
       set('token',token)
-      console.log('token',token)
-      return token
+      return true
     }).catch((error) => {
       console.log(error);
     });
-    if (tokenOk) {
-      return tokenOk
-    }
-    return null
 }
 
 
-async function fetch_UserInfos(token) {
+async function fetch_UserInfos() {
   
+  const token = get('token')
   axios.defaults.baseURL = 'http://localhost:3001';
   const basePath = '/api/v1';
 
@@ -57,19 +52,53 @@ async function fetch_UserInfos(token) {
       const { status, body, } = data;
       const { firstName, lastName, id } = body
       if (status === 200) {
-        
-        set('user', JSON.stringify({firstName:firstName, lastName:lastName, id:id})) 
-        const user = {'user': get('user')}
-        return <Navigate to='/user'/>
+        set('firstName',firstName)
+        set('lastName',lastName)
+        set('id',id)
+        return true
+      } else {
+        return false
       }
     }).catch((error) => {
       console.log(error);
     });
 }
 
+async function put_NewInfos() {
+
+  const token = get('token')
+  const firstName = document.getElementById('firstName').value
+  const lastName = document.getElementById('lastName').value
+  axios.request( 
+    {
+      method: 'put',
+      url: 'http://localhost:3001/api/v1/user/profile',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      data: {
+        firstName: firstName,
+        lastName: lastName
+      }
+    }).then((response) => {
+      console.log('reponse du put',response.data)    
+      return response.data
+    }).then((data) => {
+      const {body} = data
+
+      console.log('body',body)
+      const { firstName, lastName } = body
+      set('firstName', firstName)
+      set('lastName', lastName)
+      return true
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
 
 
 
 
 
-export { fetch_Token, fetch_UserInfos };
+export { fetch_Token, fetch_UserInfos, put_NewInfos };

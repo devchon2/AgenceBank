@@ -9,12 +9,26 @@
 
 }
 
+.hidden{
+  display:none;
+}
+
+.visible{
+  display:block;
+}
+
 .bg_dark {
   display: block;
   background-color: #12002b;
   flex-grow: 1;
 }
 
+.forgot{
+  padding-top:10px;
+  font-size:1.2vh;
+  color:red;
+  text-align: end;
+}
 
 
 .signIn_Container {
@@ -65,6 +79,7 @@ form{
 
 .input{
   padding: 5px;
+  margin-bottom: 22px;
     font-size: 1.2rem;
 }
 
