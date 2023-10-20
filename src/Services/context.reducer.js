@@ -1,3 +1,4 @@
+import {createContext} from 'react'
 
 
 function getToken(){
@@ -12,28 +13,28 @@ function removeToken(){
   localStorage.removeItem('token')
 }
 
-function setFtName(firstname){
-  localStorage.setItem('firstname',firstname)
+function setFtName(firstName){
+  localStorage.setItem('firstName',firstName)
 }
 
 function removeFtName(){
-  localStorage.removeItem('firstname')
+  localStorage.removeItem('firstName')
 }
 
 function getFtName(){
-  return localStorage.getItem('firstname')
+  return localStorage.getItem('firstName')
 }
 
-function setLtName(lastname){
-  localStorage.setItem('lastname',lastname)
+function setLtName(lastName){
+  localStorage.setItem('lastName',lastName)
 }
 
 function removeLtName(){
-  localStorage.removeItem('lastname')
+  localStorage.removeItem('lastName')
 }
 
 function getLtName(){
-  return localStorage.getItem('lastname')
+  return localStorage.getItem('lastName')
 }
 
 function setId(id){
@@ -48,4 +49,11 @@ function removeId(){
   localStorage.removeItem('id')
 }
 
-export { getToken, setToken, removeToken, setFtName, removeFtName, getFtName, setLtName, removeLtName, getLtName, setId, getId, removeId }
+
+function UserContext(infos){
+ return createContext(infos)
+}
+
+
+
+export { getToken, setToken, removeToken, setFtName, removeFtName, getFtName, setLtName, removeLtName, getLtName, setId, getId, removeId,UserContext }
