@@ -2,7 +2,7 @@ import style from './UserPage.module.css'
 import { getToken, getFtName, getLtName,setFtName,setLtName } from '../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../Services/login.service.js'
 import { useState, useEffect } from 'react'
-import CountComponent from './CountComponents/CountComponent.jsx'
+import CountComponent from './Transactions/Transaction.jsx'
 
 const accounts = [
   {
@@ -29,8 +29,14 @@ const accounts = [
 export default function UserPage() {
   const [firstName, setFirstName] = useState(getFtName())
   const [lastName, setLastName] = useState(getLtName())  
+  const fName = getFtName()
+  const lName = getLtName()
+  useEffect(() => {
+    setFtName(fName)
+    setLtName(lName)
+  }, [fName, lName])
 
-  
+
 
 function handle_Edit_Btn() {
   const formContainer = document.getElementById('userTitleForm')

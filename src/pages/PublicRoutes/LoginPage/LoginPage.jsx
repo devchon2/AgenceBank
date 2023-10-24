@@ -9,18 +9,22 @@ import { useState } from 'react';
 
 
 
+/**
+ * Composant de la page de connexion.
+ * @returns {JSX.Element} Élément JSX représentant la page de connexion.
+ */
+
 export default function LoginPage() {
   const navigate = useNavigate()
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 
   const handle_Form = async (e) => {
-    console.log('entrée dans handleform')
+     
     e.preventDefault()
-    const token = await fetch_Token(password, email).catch((err) => {
-      console.log('erreur dans handleform', err)
-
-    })
+    
+    const token = await fetch_Token(password, email)
+                  .catch((err) => {console.log('erreur dans handleform', err)})
 
     console.log('token dans handleForm', token)
 
@@ -29,6 +33,8 @@ export default function LoginPage() {
       navigate("/user")
 
     }
+    
+
     const forgot = document.getElementById('forgot')
     forgot.classList.remove(style.hidden)
     forgot.classList.add(style.forgot)

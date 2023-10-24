@@ -1,4 +1,3 @@
-import {createContext} from 'react'
 
 
 function getToken(){
@@ -30,6 +29,7 @@ function setLtName(lastName){
 }
 
 function removeLtName(){
+  
   localStorage.removeItem('lastName')
 }
 
@@ -50,10 +50,29 @@ function removeId(){
 }
 
 
-function UserContext(infos){
- return createContext(infos)
+function getState(){
+  return localStorage.getItem('state')
+}
+
+function setState(firstName= getFtName(),lastName=getLtName() ,token = getToken()){
+ 
+  localStorage.setItem('state',JSON.stringify({'firstName':firstName,'lastName':lastName,'token':token}))
+}
+
+function removeState(element){
+  if (!element ) {
+    localStorage.removeItem('state')
+  }else 
+  
+  if (element === 'firstName' ){
+    localStorage.setItem('state').firstName = '';
+  } else if (element ==='lastName'){
+    localStorage.setItem('state').lastName = '';
+  } else if (element === 'token'){
+    localStorage.setItem('state').token = '';
+  } 
 }
 
 
 
-export { getToken, setToken, removeToken, setFtName, removeFtName, getFtName, setLtName, removeLtName, getLtName, setId, getId, removeId,UserContext }
+export { getToken, setToken, removeToken, setFtName, removeFtName, getFtName, setLtName, removeLtName, getLtName, setId, getId, removeId, getState, setState, removeState }

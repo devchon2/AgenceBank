@@ -1,4 +1,4 @@
-import style from './CountComponents.module.css'
+import style from './Transaction.module.css'
 import { Link } from 'react-router-dom'
 
 export default function CountComponent({count, title, balanceType}) {

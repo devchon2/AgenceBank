@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setToken,setFtName,setLtName, setId } from '../Services/context.reducer.js'
+import { setToken,setFtName,setLtName, setId, setState } from '../Services/context.reducer.js'
 
 async function fetch_Token(password,email) {
 
@@ -49,13 +49,15 @@ async function fetch_UserInfos(token) {
     (response) => response.data)
     .then((data) => {
       const { status, body, } = data;
-      const { firstName, lastName, id } = body
+      const { firstName, lastName } = body
       if (status === 200) {
         setFtName(firstName)
         setLtName(lastName)
-        setId('id',id)
+        setState(firstName,lastName,token)
         return true
-      } 
+      } else {
+        return false
+      }
     })
 }
 
