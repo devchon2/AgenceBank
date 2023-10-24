@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { fetch_UserInfos } from '../../../Services/login.service.js';
+import { getToken, setState, getState } from '../../../Services/context.reducer.js';
 
 
 
@@ -24,7 +26,7 @@ export default function LoginPage() {
     e.preventDefault()
     
     const token = await fetch_Token(password, email)
-                  .catch((err) => {console.log('erreur dans handleform', err)})
+                  
 
     console.log('token dans handleForm', token)
 
@@ -33,14 +35,18 @@ export default function LoginPage() {
       navigate("/user")
 
     }
-    
+    const token2 = getToken()
+    console.log(token2)
+    const infos = await fetch_UserInfos(token2)
+    console.log(infos)
+    setState({'firstName':infos.firstName,'lastName':infos.lastName,'token':token2})
 
-    const forgot = document.getElementById('forgot')
-    forgot.classList.remove(style.hidden)
-    forgot.classList.add(style.forgot)
+    // const forgot = document.getElementById('forgot')
+    // forgot.classList.remove(style.hidden)
+    // forgot.classList.add(style.forgot)
 
-    const input = document.getElementById('userPassword')
-    input.style.marginBottom = '0px'
+    // const input = document.getElementById('userPassword')
+    // input.style.marginBottom = '0px'
   }
 
 

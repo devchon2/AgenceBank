@@ -5,27 +5,30 @@ import Logo from '../../../assets/argentBankLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import { getFtName } from '../../../Services/context.reducer.js'
+import { getFtName, removeState, removeToken,removeFtName, removeLtName, getState } from '../../../Services/context.reducer.js'
 
 
 
 export default function PrivateHeader() {
   const [firstName, setFirstName] = useState('')
-  const name = getFtName()
+  
 
   const navigate = useNavigate();
   const HandleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('lastName');
-    localStorage.removeItem('id');
+    removeToken();
+    removeFtName();
+    removeLtName();
+    removeState();
     navigate('/login');
   }
 
-  useEffect(() => {
+  useEffect(() => {  
+    
+    const name = getFtName()
+
     setFirstName(name)
 
-  }, [name])
+  }, [])
 
   
 

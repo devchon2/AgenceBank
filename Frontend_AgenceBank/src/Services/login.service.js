@@ -38,27 +38,31 @@ async function fetch_UserInfos(token) {
   axios.defaults.baseURL = 'http://localhost:3001';
   const basePath = '/api/v1';
 
-  await axios.request({
+  const user = await axios.request({
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     },
     method: 'post',
     url: `${basePath}/user/profile`,
-  }).then(
-    (response) => response.data)
-    .then((data) => {
-      const { status, body, } = data;
-      const { firstName, lastName } = body
-      if (status === 200) {
-        setFtName(firstName)
-        setLtName(lastName)
-        setState(firstName,lastName,token)
-        return true
-      } else {
-        return false
-      }
-    })
+  // }).then(
+  //   (response) => response.data)
+  //   .then((data) => {
+  //     const { status, body } = data;
+  //     if (status === 200) {
+        
+  //       // setState({'firstName':firstName,'lastName':lastName,'token':token})
+  //       // setFtName(firstName)
+  //       // setLtName(lastName)
+  //       return body
+  //     } else {
+  //       return false
+  //     }
+     })
+     if (user.data.status === 200){
+      return user.data.body
+}
+return null
 }
 
 async function put_NewInfos(token, firstName, lastName) {
@@ -78,11 +82,10 @@ async function put_NewInfos(token, firstName, lastName) {
       }
     }).then((response) => {
       console.log('reponse du put',response.data)    
+      setState({'firstName':firstName, 'lastName':lastName})
+
       return response.data
     })
-
-    setFtName(firstName)
-    setLtName(lastName)
 
   }
 

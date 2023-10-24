@@ -1,5 +1,5 @@
 import style from './UserPage.module.css'
-import { getToken, getFtName, getLtName,setFtName,setLtName } from '../../../Services/context.reducer.js'
+import { getToken, getFtName, getLtName,setFtName,setLtName, getState, setState } from '../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../Services/login.service.js'
 import { useState, useEffect } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
@@ -29,13 +29,34 @@ const accounts = [
 export default function UserPage() {
   const [firstName, setFirstName] = useState(getFtName())
   const [lastName, setLastName] = useState(getLtName())  
-  const fName = getFtName()
-  const lName = getLtName()
-  useEffect(() => {
-    setFtName(fName)
-    setLtName(lName)
-  }, [fName, lName])
+ 
 
+    
+    useEffect(() => {
+        console.log('state dans userpage',getState())
+
+    },[])
+    // console.log('entrée dans useeffect')
+    
+    // const get_infos = async () => {
+      
+    //   console.log(infos.firstName)
+    //   setFirstName(infos.firstName)
+    //   setLastName(infos.lastName)
+    //   setState({'firstName':firstName})
+    // }
+    // get_infos()
+    
+    // console.log('sortie de useeffect',firstName,lastName)
+    // }, [token])
+  // useEffect(() => {
+  
+  //   const name = getFtName()
+  //   const lastName = getLtName()
+  //   console.log(name, lastName)
+  //   setFirstName(name)
+  //   setLastName(lastName)
+  // }, [])
 
 
 function handle_Edit_Btn() {

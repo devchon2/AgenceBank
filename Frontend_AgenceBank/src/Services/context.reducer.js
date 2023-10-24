@@ -21,6 +21,7 @@ function removeFtName(){
 }
 
 function getFtName(){
+  console.log('local storage getFT' ,localStorage.getItem('firstName'))
   return localStorage.getItem('firstName')
 }
 
@@ -34,45 +35,41 @@ function removeLtName(){
 }
 
 function getLtName(){
+  console.log('local storage getLT' ,localStorage.getItem('lastName'))
+
   return localStorage.getItem('lastName')
 }
 
-function setId(id){
-  localStorage.setItem('id',id)
-}
 
-function getId(){
-  return localStorage.getItem('id')
-}
-
-function removeId(){
-  localStorage.removeItem('id')
-}
 
 
 function getState(){
   return localStorage.getItem('state')
 }
 
-function setState(firstName= getFtName(),lastName=getLtName() ,token = getToken()){
- 
-  localStorage.setItem('state',JSON.stringify({'firstName':firstName,'lastName':lastName,'token':token}))
+function setState(obj){
+  setFtName(obj.firstName)
+  setLtName(obj.lastName)
+
+  localStorage.setItem('state',[JSON.stringify({'user':{'firstName':obj.firstName,'lastName':obj.lastName,'token':obj.token}})])
 }
 
 function removeState(element){
   if (!element ) {
     localStorage.removeItem('state')
-  }else 
-  
+  }
+    
   if (element === 'firstName' ){
     localStorage.setItem('state').firstName = '';
-  } else if (element ==='lastName'){
+  } 
+  if (element ==='lastName'){
     localStorage.setItem('state').lastName = '';
-  } else if (element === 'token'){
+  }
+  if (element === 'token'){
     localStorage.setItem('state').token = '';
   } 
 }
 
 
 
-export { getToken, setToken, removeToken, setFtName, removeFtName, getFtName, setLtName, removeLtName, getLtName, setId, getId, removeId, getState, setState, removeState }
+export { getToken, setToken, removeToken, setFtName, removeFtName, getFtName, setLtName, removeLtName, getLtName, getState, setState, removeState }
