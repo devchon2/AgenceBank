@@ -6,10 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetch_UserInfos } from "../../../Services/login.service.js";
 import {
-  getToken,
-  setState,
-  getState,
-  setToken,
+  set_State,
+  set_Token,
 } from "../../../Services/context.reducer.js";
 
 function Forgot({ show }) {
@@ -50,14 +48,14 @@ export default function LoginPage() {
         setShow(false);
       }, 3000);
     } else {
-      setToken(token);
+      set_Token(token);
       const infos = await fetch_UserInfos(token);
       console.log(infos);
-      setState({
-        firstName: infos.firstName,
-        lastName: infos.lastName,
-        token: token,
-      });
+      set_State([
+        infos.firstName,
+        infos.lastName,
+        token,
+      ]);
       console.log("redirection vers user");
       navigate("/user");
     }

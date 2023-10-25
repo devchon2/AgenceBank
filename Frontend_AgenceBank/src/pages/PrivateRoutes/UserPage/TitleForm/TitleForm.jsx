@@ -11,7 +11,7 @@ async function handle_NewName(e) {
       const token = get_Token()
       console.log('token', token)
       await put_NewInfos(token, firstName, lastName)
-      set_State({'firstName': firstName, 'lastName': lastName, 'token': token})
+      set_State([firstName,lastName,token])
      
 
       console.log('firstName', get_State().user)

@@ -54,7 +54,7 @@ export default function UserPage() {
     const state = get_State()
     console.log('state dans userpage',state )
 
-  }, [])
+  }, [firstName])
 
   return (
     <main className={style.bg_dark}>

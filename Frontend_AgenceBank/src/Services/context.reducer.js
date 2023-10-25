@@ -1,74 +1,42 @@
 
 
-function getToken(){
+function get_Token(){
   return localStorage.getItem('token')
 }
 
-function setToken(token){
+function set_Token(token){
   localStorage.setItem('token',token)
 }
 
-function removeToken(){
+function remove_Token(){
   localStorage.removeItem('token')
 }
 
-function setFtName(firstName){
-  localStorage.setItem('firstName',firstName)
+function get_FtName(){
+  return get_State().firstName
 }
 
-function removeFtName(){
-  localStorage.removeItem('firstName')
+function get_LtName(){
+  return get_State().lastName
+
 }
 
-function getFtName(){
-  return localStorage.getItem('firstName')
+
+function get_State(){
+  return  JSON.parse(localStorage.getItem('state'))
 }
 
-function setLtName(lastName){
-  localStorage.setItem('lastName',lastName)
+function set_State(array){
+
+  localStorage.setItem('state',JSON.stringify({'firstName':array[0],'lastName': array[1],'token': array[2]}))
 }
 
-function removeLtName(){
+function remove_State(){
   
-  localStorage.removeItem('lastName')
-}
-
-function getLtName(){
-  console.log('local storage getLT' ,localStorage.getItem('lastName'))
-
-  return localStorage.getItem('lastName')
-}
-
-
-
-
-function getState(){
-  return localStorage.getItem('state')
-}
-
-function setState(obj){
-  setFtName(obj.firstName)
-  setLtName(obj.lastName)
-
-  localStorage.setItem('state',[JSON.stringify({'user':{'firstName':obj.firstName,'lastName':obj.lastName,'token':obj.token}})])
-}
-
-function removeState(element){
-  if (!element ) {
     localStorage.removeItem('state')
-  }
-    
-  if (element === 'firstName' ){
-    localStorage.setItem('state').firstName = '';
-  } 
-  if (element ==='lastName'){
-    localStorage.setItem('state').lastName = '';
-  }
-  if (element === 'token'){
-    localStorage.setItem('state').token = '';
-  } 
+ 
 }
 
 
 
-export { getToken, setToken, removeToken, setFtName, removeFtName, getFtName, setLtName, removeLtName, getLtName, getState, setState, removeState }
+export { get_Token, set_Token, remove_Token, get_FtName, get_LtName, get_State, set_State, remove_State }
