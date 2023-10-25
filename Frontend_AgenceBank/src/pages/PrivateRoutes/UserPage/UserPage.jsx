@@ -28,77 +28,87 @@ const accounts = [
 
 export default function UserPage() {
   const [firstName, setFirstName] = useState(getFtName())
-  const [lastName, setLastName] = useState(getLtName())  
-  const [showTitle, setShowTitle] = useState({'hidden':false,'visible':true})
-  const [showForm, setShowForm] = useState({'hidden':true,'visible':false})
-  const [showEditBtn, setShowEditBtn] = useState({'hidden':false,'visible':true})
-  const [showCancelBtn, setShowCancelBtn] = useState({'hidden':true,'visible':false})
-  const [showSaveBtn, setShowSaveBtn] = useState({'hidden':true,'visible':false})
-
- 
-
-    
-    useEffect(() => {
-        console.log('state dans userpage',getState())
-
-    },[])
-    // console.log('entrée dans useeffect')
-    
-    // const get_infos = async () => {
-      
-    //   console.log(infos.firstName)
-    //   setFirstName(infos.firstName)
-    //   setLastName(infos.lastName)
-    //   setState({'firstName':firstName})
-    // }
-    // get_infos()
-    
-    // console.log('sortie de useeffect',firstName,lastName)
-    // }, [token])
-  // useEffect(() => {
-  
-  //   const name = getFtName()
-  //   const lastName = getLtName()
-  //   console.log(name, lastName)
-  //   setFirstName(name)
-  //   setLastName(lastName)
-  // }, [])
+  const [lastName, setLastName] = useState(getLtName())
+  const [showSaveBtn, setShowSaveBtn] = useState('hidden')
+  const [showCancelBtn, setShowCancelBtn] = useState('hidden')
+  const [showEditBtn, setShowEditBtn] = useState('visible')
+  const [showTitle, setShowTitle] = useState('visible')
+  const [showForm, setShowForm] = useState('hidden')
 
 
-function handle_Edit_Btn() {
-  setShowSaveBtn({'hidden':false,'visible':true})
-  setShowCancelBtn({'hidden':false,'visible':true})
-  setShowEditBtn({'hidden':true,'visible':false})
-  setShowTitle({'hidden':true,'visible':false})
-  setShowForm({'hidden':false,'visible':true})
-}
+  useEffect(() => {
+    console.log('state dans userpage', getState())
 
-function handle_Cancel_Btn() {
-  const formContainer = document.getElementById('userTitleForm')
-  const title = document.getElementById('userTitleName')
-  const editBtn = document.getElementById('editBtnContainer')
+  }, [])
 
-  title.classList.add(style.visible)
-  title.classList.remove(style.hidden)
+  function TitleForm({ stateSaveBtn, stateTitle, stateEditBtn, stateCancelBtn, stateForm }) {
 
-  formContainer.classList.add(style.hidden)
-  formContainer.classList.remove(style.visible)
-
-  editBtn.classList.add(style.visible)
-  editBtn.classList.remove(style.hidden)
+    const saveBtn = stateSaveBtn === 'visible' ? style.visible : style.hidden
+    const title = stateTitle === 'visible' ? style.visible : style.hidden
+    const editBtn = stateEditBtn === 'visible' ? style.visible : style.hidden
+    const cancelBtn = stateCancelBtn === 'visible' ? style.visible : style.hidden
+    const form = stateForm === 'visible' ? style.visible : style.hidden
 
 
-}
+    return (
+      <>
+        <h1 className={style.title}>
+          Welcome back
+          <span id='userTitleName' className={`${style.userTitleName} ${title}`} >{`${firstName} ${lastName}`}!</span>
 
-async function handle_NewName(e) {
-  e.preventDefault()
-  const token = getToken()
-  console.log('token', token)
-  await put_NewInfos(token, firstName, lastName)  
-  setFirstName(firstName)
-  setLastName(lastName)   
-  handle_Cancel_Btn()
-}
+          <form id='userTitleForm' className={`${style.userTitleForm} ${form}`} >
+
+            <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
+
+              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setFirstName(e.target.value)} />
+              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) => setLastName(e.target.value)} />
+            </div>
+            <div className={style.userTitleButtonContainer}>
+              <button key={Math.random()} className={`${style.userTitleButton} ${saveBtn}`} type='submit' onClick={handle_NewName}>Save</button>
+              <button key={Math.random()} className={`${style.userTitleButton} ${cancelBtn}`} type='reset' onClick={handle_Cancel_Btn}>Cancel</button>
+            </div>
+          </form>
+
+
+        </h1>
+
+        <div id='editBtnContainer' className={`${editBtn} ${style.editBtnContainer}`}>
+          <button id='editBtn' className={style.button}
+            onClick={handle_Edit_Btn}>Edit Name </button>
+        </div>
+      </>
+
+    )
+  }
+
+
+  function handle_Edit_Btn() {
+    setShowSaveBtn('visible')
+    setShowCancelBtn('visible')
+    setShowEditBtn('hidden')
+    setShowTitle('hidden')
+    setShowForm('visible')
+  }
+
+  function handle_Cancel_Btn() {
+    setShowSaveBtn('hidden')
+    setShowCancelBtn('hidden')
+    setShowEditBtn('visible')
+    setShowTitle('visible')
+    setShowForm('hidden')
+
+
+  }
+
+  async function handle_NewName(e) {
+    e.preventDefault()
+    const token = getToken()
+    console.log('token', token)
+    await put_NewInfos(token, firstName, lastName)
+    setFirstName(firstName)
+    setLastName(lastName)
+    handle_Cancel_Btn()
+  }
 
 
 
@@ -109,37 +119,15 @@ async function handle_NewName(e) {
   return (
     <main className={style.bg_dark}>
       <div className={style.hero}>
-        <h1 className={style.title}>
-          Welcome back
-          <span id='userTitleName' className={`${style.userTitleName} ${style.visible}`} >{`${firstName} ${lastName}`}!</span>
+        <TitleForm stateSaveBtn={showSaveBtn} stateTitle={showTitle} stateEditBtn={showEditBtn} stateCancelBtn={showCancelBtn} stateForm={showForm} />
 
-          <form id='userTitleForm' className={`${style.userTitleForm} ${style.hidden}`} >
-
-            <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
-
-              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setFirstName(e.target.value)}/>
-              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) =>  setLastName(e.target.value)} />
-            </div>
-            <div className={style.userTitleButtonContainer}>
-              <button key={Math.random()} className={style.userTitleButton} type='submit' onClick={handle_NewName}>Save</button>
-              <button key={Math.random()} className={style.userTitleButton} type='reset' onClick={handle_Cancel_Btn}>Cancel</button>
-            </div>
-          </form>
-
-
-        </h1>
-
-        <div id='editBtnContainer' className={`${style.visible} ${style.editBtnContainer}`}>
-          <button id='editBtn' className={style.button}
-            onClick={handle_Edit_Btn}>Edit Name </button>
-        </div>
       </div>
 
-      
-        {accounts.map((account) => (
-          <CountComponent key={account.id} count={account.amount} title={account.title} balanceType={account.balanceType} />
-        ))}
-      
+
+      {accounts.map((account) => (
+        <CountComponent key={account.id} count={account.amount} title={account.title} balanceType={account.balanceType} />
+      ))}
+
     </main>
   )
 }
