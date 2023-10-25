@@ -1,21 +1,20 @@
 import { useState } from "react"
 import style from './TitleForm.module.css'
-import { getToken, getFtName, getLtName, setState, getState, setFtName, setLtName } from '../../../../Services/context.reducer.js'
+import { get_Token, get_FtName, get_LtName, set_State, get_State, set_LtName } from '../../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../../Services/login.service.js'
 
 export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, showTitle, showForm, Edit_Btn, Cancel_Btn, }) {
-  const [firstName, setFirstName] = useState(getFtName())
-  const [lastName, setLastName] = useState(getLtName())
+  const [firstName, setFirstName] = useState(get_FtName())
+  const [lastName, setLastName] = useState(get_LtName())
 async function handle_NewName(e) {
       e.preventDefault()
-      const token = getToken()
+      const token = get_Token()
       console.log('token', token)
       await put_NewInfos(token, firstName, lastName)
-      setState({'firstName': firstName, 'lastName': lastName, 'token': token})
-      setFirstName(firstName)
-      setLastName(lastName)
+      set_State({'firstName': firstName, 'lastName': lastName, 'token': token})
+     
 
-      console.log('firstName', getState())
+      console.log('firstName', get_State().user)
       Cancel_Btn()
     }
 

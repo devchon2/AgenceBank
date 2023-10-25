@@ -43,19 +43,7 @@ async function fetch_UserInfos(token) {
     },
     method: 'post',
     url: `${basePath}/user/profile`,
-    // }).then(
-    //   (response) => response.data)
-    //   .then((data) => {
-    //     const { status, body } = data;
-    //     if (status === 200) {
-
-    //       // setState({'firstName':firstName,'lastName':lastName,'token':token})
-    //       // setFtName(firstName)
-    //       // setLtName(lastName)
-    //       return body
-    //     } else {
-    //       return false
-    //     }
+    
   })
   if (user.data.status === 200) {
     return user.data.body

@@ -1,5 +1,5 @@
 import style from './UserPage.module.css'
-import { getFtName, getLtName, getState } from '../../../Services/context.reducer.js'
+import { get_FtName, get_LtName, get_State, setLtName } from '../../../Services/context.reducer.js'
 import { useState, useEffect } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
 import TitleForm from './TitleForm/TitleForm.jsx'
@@ -27,14 +27,13 @@ const accounts = [
 
 
 export default function UserPage() {
-  const [firstName, setFirstName] = useState(getFtName())
-  const [lastName, setLastName] = useState(getLtName())
+  const [firstName, setFirstName] = useState(get_FtName())
+  const [lastName, setLastName] = useState(get_LtName())
   const [showSaveBtn, setShowSaveBtn] = useState('hidden')
   const [showCancelBtn, setShowCancelBtn] = useState('hidden')
   const [showEditBtn, setShowEditBtn] = useState('visible')
   const [showTitle, setShowTitle] = useState('visible')
   const [showForm, setShowForm] = useState('hidden')
-
   function handle_Edit_Btn() {
     setShowSaveBtn('visible')
     setShowCancelBtn('visible')
@@ -52,7 +51,8 @@ export default function UserPage() {
   }
 
   useEffect(() => {
-    console.log('state dans userpage', getState())
+    const state = get_State()
+    console.log('state dans userpage',state )
 
   }, [])
 
