@@ -1,5 +1,5 @@
 import style from './UserPage.module.css'
-import { getToken, getFtName, getLtName,setFtName,setLtName, getState, setState } from '../../../Services/context.reducer.js'
+import { getToken, getFtName, getLtName, getState } from '../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../Services/login.service.js'
 import { useState, useEffect } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
@@ -29,6 +29,12 @@ const accounts = [
 export default function UserPage() {
   const [firstName, setFirstName] = useState(getFtName())
   const [lastName, setLastName] = useState(getLtName())  
+  const [showTitle, setShowTitle] = useState({'hidden':false,'visible':true})
+  const [showForm, setShowForm] = useState({'hidden':true,'visible':false})
+  const [showEditBtn, setShowEditBtn] = useState({'hidden':false,'visible':true})
+  const [showCancelBtn, setShowCancelBtn] = useState({'hidden':true,'visible':false})
+  const [showSaveBtn, setShowSaveBtn] = useState({'hidden':true,'visible':false})
+
  
 
     
@@ -60,24 +66,11 @@ export default function UserPage() {
 
 
 function handle_Edit_Btn() {
-  const formContainer = document.getElementById('userTitleForm')
-  const title = document.getElementById('userTitleName')
-  const editBtn = document.getElementById('editBtnContainer')
-
-  console.log('title', title)
-  title.classList.toggle(style.hidden)
-  title.classList.toggle(style.visible)
-
-
-  console.log('formContainer', formContainer)
-  formContainer.classList.toggle(style.visible)
-  formContainer.classList.toggle(style.hidden)
-
-  console.log('editBtn', editBtn)
-  editBtn.classList.toggle(style.hidden)
-  editBtn.classList.toggle(style.visible)
-
-
+  setShowSaveBtn({'hidden':false,'visible':true})
+  setShowCancelBtn({'hidden':false,'visible':true})
+  setShowEditBtn({'hidden':true,'visible':false})
+  setShowTitle({'hidden':true,'visible':false})
+  setShowForm({'hidden':false,'visible':true})
 }
 
 function handle_Cancel_Btn() {

@@ -1,15 +1,29 @@
-import style from './LoginPage.module.css'
-import { fetch_Token } from '../../../Services/login.service.js'
+import style from "./LoginPage.module.css";
+import { fetch_Token } from "../../../Services/login.service.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { fetch_UserInfos } from '../../../Services/login.service.js';
-import { getToken, setState, getState } from '../../../Services/context.reducer.js';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { fetch_UserInfos } from "../../../Services/login.service.js";
+import {
+  getToken,
+  setState,
+  getState,
+  setToken,
+} from "../../../Services/context.reducer.js";
 
+function Forgot({ show }) {
+  //fonction qui affiche le message d'erreur si les identifiants sont invalides
 
-
-
+  if (show) {
+    return (
+      <div className={style.forgot}>
+        <p>Your credentials are invalids!</p>
+      </div>
+    );
+  }
+  return null;
+}
 
 /**
  * Composant de la page de connexion.
@@ -17,41 +31,40 @@ import { getToken, setState, getState } from '../../../Services/context.reducer.
  */
 
 export default function LoginPage() {
-  const navigate = useNavigate()
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
 
   const handle_Form = async (e) => {
-     
-    e.preventDefault()
-    
-    const token = await fetch_Token(password, email)
-                  
+    e.preventDefault();
+    console.log("entrée dans handleForm");
+    const token = await fetch_Token(password, email);
+    console.log("reponse", token);
+    console.log("token dans handleForm", token);
 
-    console.log('token dans handleForm', token)
-
-    if (token) {
-      console.log('redirection vers user')
-      navigate("/user")
-
+    if (token === false) {
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 3000);
+    } else {
+      setToken(token);
+      const infos = await fetch_UserInfos(token);
+      console.log(infos);
+      setState({
+        firstName: infos.firstName,
+        lastName: infos.lastName,
+        token: token,
+      });
+      console.log("redirection vers user");
+      navigate("/user");
     }
-    const token2 = getToken()
-    console.log(token2)
-    const infos = await fetch_UserInfos(token2)
-    console.log(infos)
-    setState({'firstName':infos.firstName,'lastName':infos.lastName,'token':token2})
-
-    // const forgot = document.getElementById('forgot')
-    // forgot.classList.remove(style.hidden)
-    // forgot.classList.add(style.forgot)
-
-    // const input = document.getElementById('userPassword')
-    // input.style.marginBottom = '0px'
-  }
-
+    return;
+  };
 
   return (
-
     <main className={style.bg_dark}>
       <div className={style.signIn_Container}>
         <FontAwesomeIcon
@@ -59,7 +72,7 @@ export default function LoginPage() {
           icon={faUserCircle}
         />
         <h1 className={style.title}>Sign In</h1>
-        <form  >
+        <form>
           <div className={style.input_Container}>
             <label className={style.label} htmlFor="userMail">
               Username
@@ -72,10 +85,10 @@ export default function LoginPage() {
               name="username"
               autoComplete="off"
               onChange={(e) => {
-                setEmail(e.target.value)
-                console.log('email', email)}}
+                setEmail(e.target.value);
+                console.log("email", email);
+              }}
             />
-
           </div>
           <div className={style.input_Container}>
             <label className={style.label} htmlFor="userPassword">
@@ -88,11 +101,12 @@ export default function LoginPage() {
               autoComplete="off"
               id="userPassword"
               name="password"
-              onChange={(e) => {setPassword(e.target.value)
-              console.log('password', password)}
-              }
+              onChange={(e) => {
+                setPassword(e.target.value);
+                console.log("password", password);
+              }}
             />
-            <p id='forgot' className={style.hidden}>Your credentials are invalids!</p>
+            <Forgot show={show} />
           </div>
           <div className={style.input_Check_Container}>
             <input
@@ -107,15 +121,16 @@ export default function LoginPage() {
           </div>
 
           <div className={style.button_container}>
-            <button className={style.button} type="button" onClick={handle_Form} >
+            <button
+              className={style.button}
+              type="button"
+              onClick={handle_Form}
+            >
               Sign in
             </button>
           </div>
         </form>
       </div>
     </main>
-
-  )
-
-
+  );
 }

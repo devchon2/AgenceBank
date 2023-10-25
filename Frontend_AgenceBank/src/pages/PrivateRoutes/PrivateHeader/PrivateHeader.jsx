@@ -10,8 +10,8 @@ import { getFtName, removeState, removeToken,removeFtName, removeLtName, getStat
 
 
 export default function PrivateHeader() {
-  const [firstName, setFirstName] = useState('')
-  
+  const [firstName, setFirstName] = useState(getState().firstName)
+  const state = getState()
 
   const navigate = useNavigate();
   const HandleLogout = () => {
@@ -28,7 +28,7 @@ export default function PrivateHeader() {
 
     setFirstName(name)
 
-  }, [])
+  }, [state])
 
   
 

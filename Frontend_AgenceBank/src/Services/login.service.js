@@ -1,40 +1,39 @@
 import axios from 'axios';
-import { setToken,setFtName,setLtName, setId, setState } from '../Services/context.reducer.js'
+import { setToken, setFtName, setLtName, setId, setState } from '../Services/context.reducer.js'
 
-async function fetch_Token(password,email) {
+async function fetch_Token(password, email) {
 
-  axios.defaults.baseURL = 'http://localhost:3001';
-
-  
-  const basePath = '/api/v1';
-
-
-  return await axios.request({
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'post',
-    url: `${basePath}/user/login`,
-    data: {
-      'email': email,
-      'password': password
-    },
-  }).then(
-    (response) => response.data)
-    .then((data) => {
-      const {  body } = data;
-      const { token } = body
-      setToken(token)
-      return true
-    }).catch((error) => {
-      console.log(error);
-    });
+  try {
+    axios.defaults.baseURL = 'http://localhost:3001';
+    const basePath = '/api/v1';
+    const reponse = await axios.request({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'post',
+      url: `${basePath}/user/login`,
+      data: {
+        'email': email,
+        'password': password
+      },
+    })
+    
+    if (reponse.data.status === 200) {
+      const { body } = reponse.data;
+      const { token } = body;
+      return token
+    }
+  }
+  catch (error) {
+    return false
+  }  
+  return null
 }
 
 
 async function fetch_UserInfos(token) {
-  
-  
+
+
   axios.defaults.baseURL = 'http://localhost:3001';
   const basePath = '/api/v1';
 
@@ -45,30 +44,30 @@ async function fetch_UserInfos(token) {
     },
     method: 'post',
     url: `${basePath}/user/profile`,
-  // }).then(
-  //   (response) => response.data)
-  //   .then((data) => {
-  //     const { status, body } = data;
-  //     if (status === 200) {
-        
-  //       // setState({'firstName':firstName,'lastName':lastName,'token':token})
-  //       // setFtName(firstName)
-  //       // setLtName(lastName)
-  //       return body
-  //     } else {
-  //       return false
-  //     }
-     })
-     if (user.data.status === 200){
-      return user.data.body
-}
-return null
+    // }).then(
+    //   (response) => response.data)
+    //   .then((data) => {
+    //     const { status, body } = data;
+    //     if (status === 200) {
+
+    //       // setState({'firstName':firstName,'lastName':lastName,'token':token})
+    //       // setFtName(firstName)
+    //       // setLtName(lastName)
+    //       return body
+    //     } else {
+    //       return false
+    //     }
+  })
+  if (user.data.status === 200) {
+    return user.data.body
+  }
+  return null
 }
 
 async function put_NewInfos(token, firstName, lastName) {
 
-  
-  axios.request( 
+
+  axios.request(
     {
       method: 'put',
       url: 'http://localhost:3001/api/v1/user/profile',
@@ -81,13 +80,13 @@ async function put_NewInfos(token, firstName, lastName) {
         lastName: lastName
       }
     }).then((response) => {
-      console.log('reponse du put',response.data)    
-      setState({'firstName':firstName, 'lastName':lastName})
+      console.log('reponse du put', response.data)
+      setState({ 'firstName': firstName, 'lastName': lastName })
 
       return response.data
     })
 
-  }
+}
 
 
 

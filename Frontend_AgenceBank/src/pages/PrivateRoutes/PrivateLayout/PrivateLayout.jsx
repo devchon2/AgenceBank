@@ -3,9 +3,8 @@ import React from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
 import PrivateHeader from '../PrivateHeader/PrivateHeader.jsx'
 import Footer from '../../../Components/Footer/Footer.jsx'
-import { useEffect, useState } from 'react'
-import { fetch_UserInfos } from '../../../Services/login.service.js'
-import {  getState, getToken } from '../../../Services/context.reducer.js'
+import { useState } from 'react'
+import { getToken } from '../../../Services/context.reducer.js'
 
 
 export default function PrivateLayout() {  
