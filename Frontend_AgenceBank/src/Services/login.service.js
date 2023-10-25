@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { setToken, setFtName, setLtName, setId, setState } from '../Services/context.reducer.js'
 
 async function fetch_Token(password, email) {
 
@@ -67,7 +66,7 @@ async function fetch_UserInfos(token) {
 async function put_NewInfos(token, firstName, lastName) {
 
 
-  axios.request(
+  const reponse = await axios.request(
     {
       method: 'put',
       url: 'http://localhost:3001/api/v1/user/profile',
@@ -79,13 +78,13 @@ async function put_NewInfos(token, firstName, lastName) {
         firstName: firstName,
         lastName: lastName
       }
-    }).then((response) => {
-      console.log('reponse du put', response.data)
-      setState({ 'firstName': firstName, 'lastName': lastName })
-
-      return response.data
     })
+    if (reponse.data){
+      console.log(reponse.data)
+    }
+  
 
+  return null
 }
 
 

@@ -10,7 +10,7 @@ import { getFtName, removeState, removeToken,removeFtName, removeLtName, getStat
 
 
 export default function PrivateHeader() {
-  const [firstName, setFirstName] = useState(getState().firstName)
+  const [firstName, setFirstName] = useState(getFtName())
   const state = getState()
 
   const navigate = useNavigate();
@@ -22,14 +22,11 @@ export default function PrivateHeader() {
     navigate('/login');
   }
 
-  useEffect(() => {  
-    
-    const name = getFtName()
-
-    setFirstName(name)
+  useEffect(() => {
+    console.log('state dans privateheader', state)
+    setFirstName(getFtName())
 
   }, [state])
-
   
 
   return (

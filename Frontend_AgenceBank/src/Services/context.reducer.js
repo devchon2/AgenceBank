@@ -21,7 +21,6 @@ function removeFtName(){
 }
 
 function getFtName(){
-  console.log('local storage getFT' ,localStorage.getItem('firstName'))
   return localStorage.getItem('firstName')
 }
 

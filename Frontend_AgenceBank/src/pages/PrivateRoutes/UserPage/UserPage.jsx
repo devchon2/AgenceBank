@@ -1,8 +1,8 @@
 import style from './UserPage.module.css'
-import { getToken, getFtName, getLtName, getState } from '../../../Services/context.reducer.js'
-import { put_NewInfos } from '../../../Services/login.service.js'
+import { getFtName, getLtName, getState } from '../../../Services/context.reducer.js'
 import { useState, useEffect } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
+import TitleForm from './TitleForm/TitleForm.jsx'
 
 const accounts = [
   {
@@ -35,53 +35,6 @@ export default function UserPage() {
   const [showTitle, setShowTitle] = useState('visible')
   const [showForm, setShowForm] = useState('hidden')
 
-
-  useEffect(() => {
-    console.log('state dans userpage', getState())
-
-  }, [])
-
-  function TitleForm({ stateSaveBtn, stateTitle, stateEditBtn, stateCancelBtn, stateForm }) {
-
-    const saveBtn = stateSaveBtn === 'visible' ? style.visible : style.hidden
-    const title = stateTitle === 'visible' ? style.visible : style.hidden
-    const editBtn = stateEditBtn === 'visible' ? style.visible : style.hidden
-    const cancelBtn = stateCancelBtn === 'visible' ? style.visible : style.hidden
-    const form = stateForm === 'visible' ? style.visible : style.hidden
-
-
-    return (
-      <>
-        <h1 className={style.title}>
-          Welcome back
-          <span id='userTitleName' className={`${style.userTitleName} ${title}`} >{`${firstName} ${lastName}`}!</span>
-
-          <form id='userTitleForm' className={`${style.userTitleForm} ${form}`} >
-
-            <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
-
-              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setFirstName(e.target.value)} />
-              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) => setLastName(e.target.value)} />
-            </div>
-            <div className={style.userTitleButtonContainer}>
-              <button key={Math.random()} className={`${style.userTitleButton} ${saveBtn}`} type='submit' onClick={handle_NewName}>Save</button>
-              <button key={Math.random()} className={`${style.userTitleButton} ${cancelBtn}`} type='reset' onClick={handle_Cancel_Btn}>Cancel</button>
-            </div>
-          </form>
-
-
-        </h1>
-
-        <div id='editBtnContainer' className={`${editBtn} ${style.editBtnContainer}`}>
-          <button id='editBtn' className={style.button}
-            onClick={handle_Edit_Btn}>Edit Name </button>
-        </div>
-      </>
-
-    )
-  }
-
-
   function handle_Edit_Btn() {
     setShowSaveBtn('visible')
     setShowCancelBtn('visible')
@@ -96,30 +49,17 @@ export default function UserPage() {
     setShowEditBtn('visible')
     setShowTitle('visible')
     setShowForm('hidden')
-
-
   }
 
-  async function handle_NewName(e) {
-    e.preventDefault()
-    const token = getToken()
-    console.log('token', token)
-    await put_NewInfos(token, firstName, lastName)
-    setFirstName(firstName)
-    setLastName(lastName)
-    handle_Cancel_Btn()
-  }
+  useEffect(() => {
+    console.log('state dans userpage', getState())
 
-
-
-
-
-
+  }, [])
 
   return (
     <main className={style.bg_dark}>
       <div className={style.hero}>
-        <TitleForm stateSaveBtn={showSaveBtn} stateTitle={showTitle} stateEditBtn={showEditBtn} stateCancelBtn={showCancelBtn} stateForm={showForm} />
+        <TitleForm showSaveBtn={showSaveBtn} showCancelBtn={showCancelBtn} showEditBtn={showEditBtn} showTitle={showTitle} showForm={showForm}  Edit_Btn={handle_Edit_Btn} Cancel_Btn={handle_Cancel_Btn}   />
 
       </div>
 
