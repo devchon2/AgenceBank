@@ -7,10 +7,12 @@ import ProfilPage from './pages/PrivateRoutes/ProfilePage/ProfilePage.jsx';
 import PublicLayout from './pages/PublicRoutes/PublicLayout/PublicLayout.jsx';
 import PrivateLayout from './pages/PrivateRoutes/PrivateLayout/PrivateLayout.jsx';
 import ErrorPage from './pages/PublicRoutes/ErrorPage/ErrorPage.jsx';
+import { store } from './Services/store.js';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
-   
+   <Provider store={store}>
     <Routes>
       <Route element={<PublicLayout />} >
         <Route index element={<Home />} />
@@ -29,7 +31,7 @@ function App() {
         </Route>
            
     </Routes>
-  
+  </Provider>
   )
 };
 
