@@ -1,6 +1,6 @@
 import { useState } from "react"
 import style from './TitleForm.module.css'
-import { get_Token, get_FtName, get_LtName, set_State, get_State, set_LtName } from '../../../../Services/context.reducer.js'
+import { get_Token, get_FtName, get_LtName, set_State, get_State } from '../../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../../Services/login.service.js'
 
 export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, showTitle, showForm, Edit_Btn, Cancel_Btn, }) {
@@ -12,9 +12,6 @@ async function handle_NewName(e) {
       console.log('token', token)
       await put_NewInfos(token, firstName, lastName)
       set_State([firstName,lastName,token])
-     
-
-      console.log('firstName', get_State().user)
       Cancel_Btn()
     }
 
@@ -40,9 +37,7 @@ async function handle_NewName(e) {
 
             <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
 
-              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => {
-                console.log('e.target.value', e.target.value);
-                setFirstName(e.target.value)}} />
+              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setFirstName(e.target.value)} />
               <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) => setLastName(e.target.value)} />
             </div>
             <div className={style.userTitleButtonContainer}>

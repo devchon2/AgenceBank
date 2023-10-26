@@ -1,5 +1,5 @@
 import style from './UserPage.module.css'
-import { get_FtName, get_LtName, get_State, setLtName } from '../../../Services/context.reducer.js'
+import { get_FtName, get_LtName } from '../../../Services/context.reducer.js'
 import { useState, useEffect } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
 import TitleForm from './TitleForm/TitleForm.jsx'
@@ -34,6 +34,8 @@ export default function UserPage() {
   const [showEditBtn, setShowEditBtn] = useState('visible')
   const [showTitle, setShowTitle] = useState('visible')
   const [showForm, setShowForm] = useState('hidden')
+
+
   function handle_Edit_Btn() {
     setShowSaveBtn('visible')
     setShowCancelBtn('visible')
@@ -51,10 +53,10 @@ export default function UserPage() {
   }
 
   useEffect(() => {
-    const state = get_State()
-    console.log('state dans userpage',state )
-
-  }, [firstName])
+    
+    setFirstName(get_FtName())
+    setLastName(get_LtName())
+  }, [firstName,lastName])
 
   return (
     <main className={style.bg_dark}>
