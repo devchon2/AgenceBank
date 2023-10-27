@@ -5,18 +5,15 @@ import Logo from '../../../assets/argentBankLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import firstNameReducer from '../../../Redux/firstName/firstNameSlice.js';
 import { removeLastName } from '../../../Redux/lastName/lastNameTypes.js';
-import  { removeFirstName, getFirstName}  from '../../../Redux/firstName/firstNameTypes.js';
+import  { removeFirstName }  from '../../../Redux/firstName/firstNameTypes.js';
 import { removeToken } from '../../../Redux/token/tokenTypes.js';
 import { removeId } from '../../../Redux/id/idTypes.js';
 import { useDispatch, useSelector } from 'react-redux';
-import store from '../../../Redux/store.js';
 
 
 
 export default function PrivateHeader() {
-    const dispatch = useDispatch()
     
     const firstName = useSelector(state => state.firstName.firstName)
 const [fstName, setFstName] = useState(firstName)
@@ -29,7 +26,9 @@ const [fstName, setFstName] = useState(firstName)
 
 
   const navigate = useNavigate();
-  const HandleLogout = () => {
+  const HandleLogout = () => {    
+    const dispatch = useDispatch()
+
     dispatch(removeToken())
     dispatch(removeFirstName())
     dispatch(removeLastName())

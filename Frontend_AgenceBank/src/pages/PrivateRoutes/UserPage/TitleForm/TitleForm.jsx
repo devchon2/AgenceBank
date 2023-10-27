@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import style from './TitleForm.module.css'
-import { get_Token, get_FtName, get_LtName, set_State, get_State } from '../../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../../Services/login.service.js'
 import store from "../../../../Redux/store.js"
 import { useDispatch } from "react-redux"

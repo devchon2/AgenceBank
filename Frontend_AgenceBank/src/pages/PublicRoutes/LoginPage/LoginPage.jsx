@@ -7,13 +7,11 @@ import { useState } from "react";
 import { fetch_UserInfos } from "../../../Services/login.service.js";
 import { setFirstName } from "../../../Redux/firstName/firstNameTypes.js";
 import { setLastName } from "../../../Redux/lastName/lastNameTypes.js";
-import { setToken, getToken } from "../../../Redux/token/tokenTypes.js";
+import { setToken } from "../../../Redux/token/tokenTypes.js";
 import { setId } from "../../../Redux/id/idTypes.js";
-import idReducer from "../../../Redux/id/idSlice.js";
 
 
-import store from "../../../Redux/store.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 

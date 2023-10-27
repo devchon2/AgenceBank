@@ -1,4 +1,3 @@
-import store from '../store';
 
 const SET_FIRSTNAME = 'SET_FIRSTNAME';
 
