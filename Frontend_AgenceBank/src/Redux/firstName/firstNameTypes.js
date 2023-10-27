@@ -1,3 +1,5 @@
+import store from '../store';
+
 const SET_FIRSTNAME = 'SET_FIRSTNAME';
 
  const setFirstName = (firstName) => ({
@@ -5,14 +7,23 @@ const SET_FIRSTNAME = 'SET_FIRSTNAME';
   payload: firstName
 });
 
+const GET_FIRSTNAME = 'GET_FIRSTNAME';
 
-
-const SET_LASTNAME = 'SET_LASTNAME';
-
- const setLastName = (lastName) => ({
-  type: SET_LASTNAME,
-  payload: lastName
+  const getFirstName = () => ({
+  type: GET_FIRSTNAME,
+  
 });
 
 
-export {setFirstName,setLastName}
+
+const REMOVE_FIRSTNAME = 'REMOVE_FIRSTNAME';
+
+  const removeFirstName = () => ({
+  type: REMOVE_FIRSTNAME,
+  payload:null
+
+});
+
+
+
+export {getFirstName, setFirstName ,removeFirstName}

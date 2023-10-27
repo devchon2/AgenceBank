@@ -5,28 +5,40 @@ import Logo from '../../../assets/argentBankLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import { get_FtName, remove_State, remove_Token, get_State } from '../../../Services/context.reducer.js'
+import firstNameReducer from '../../../Redux/firstName/firstNameSlice.js';
+import { removeLastName } from '../../../Redux/lastName/lastNameTypes.js';
+import  { removeFirstName, getFirstName}  from '../../../Redux/firstName/firstNameTypes.js';
+import { removeToken } from '../../../Redux/token/tokenTypes.js';
+import { removeId } from '../../../Redux/id/idTypes.js';
+import { useDispatch, useSelector } from 'react-redux';
+import store from '../../../Redux/store.js';
 
 
 
 export default function PrivateHeader() {
-  const [firstName, setFirstName] = useState(get_FtName())
-  const state = get_State()
+    const dispatch = useDispatch()
+    
+    const firstName = useSelector(state => state.firstName.firstName)
+const [fstName, setFstName] = useState(firstName)
+
+  useEffect(() => {          
+    
+
+    setFstName(firstName)
+  }, [firstName])
+
 
   const navigate = useNavigate();
   const HandleLogout = () => {
-    remove_Token();
-    remove_State();
+    dispatch(removeToken())
+    dispatch(removeFirstName())
+    dispatch(removeLastName())
+    dispatch(removeId())
+
     navigate('/login');
   }
 
-  useEffect(() => {
-    console.log('state dans privateheader', state)
-    setFirstName(state.firstName)
-
-  }, [state])
-  
-
+  console.log('return de privateHeader')
   return (
     <header className={style.header}>
       <Link to="/" className={style.header_Logo_Link}>
@@ -36,7 +48,7 @@ export default function PrivateHeader() {
       <nav className={style.header_Nav}>
       <Link to="/user" className={style.header_Link}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
-      {firstName}
+      {fstName}
       </Link>
       <Link to="/login" className={style.header_Link} onClick={HandleLogout}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faSignOut}/>

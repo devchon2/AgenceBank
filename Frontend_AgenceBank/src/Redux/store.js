@@ -4,12 +4,14 @@ import lastNameReducer from './lastName/lastNameSlice';
 import idReducer from './id/idSlice';
 import tokenReducer from './token/tokenSlice';
 
-export const store = configureStore({
-  reducer: {
+const store = configureStore({
+  
     firstName: firstNameReducer,
     lastName: lastNameReducer,
     id: idReducer,
     token: tokenReducer,
-  },
+  
 });
 console.log(store);
+
+export default store;

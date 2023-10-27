@@ -5,12 +5,18 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetch_UserInfos } from "../../../Services/login.service.js";
-import {
-  set_State,
-  set_Token,
-} from "../../../Services/context.reducer.js";
-import {store } from "../../../Redux/store.js";
+import { setFirstName } from "../../../Redux/firstName/firstNameTypes.js";
+import { setLastName } from "../../../Redux/lastName/lastNameTypes.js";
+import { setToken, getToken } from "../../../Redux/token/tokenTypes.js";
+import { setId } from "../../../Redux/id/idTypes.js";
+import idReducer from "../../../Redux/id/idSlice.js";
+
+
+import store from "../../../Redux/store.js";
 import { useSelector, useDispatch } from "react-redux";
+
+
+
 function Forgot({ show }) {
   //fonction qui affiche le message d'erreur si les identifiants sont invalides
 
@@ -30,47 +36,38 @@ function Forgot({ show }) {
  */
 
 export default function LoginPage() {
-
-  const first = useSelector((state) => state.firstName);
-  const last = useSelector((state) => state.lastName);
-  const token = useSelector((state) => state.token);
-
-  const dispatch = useDispatch();
-
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [show, setShow] = useState(false);
-console.log("store", store.getState());
 
+
+const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
+  
   const handle_Form = async (e) => {
     e.preventDefault();
-    console.log("entrée dans handleForm");
-    const token = await fetch_Token(password, email);
+
+    let token = await fetch_Token(password, email);
     //Récupérer le token et l'intégrer au store 
-    dispatch(set_Token(token));
-  
+    dispatch(setToken(token));
 
-
-    console.log("reponse", token);
-    console.log("token dans handleForm", token);
-
-    if (token === false) {
+    if (password === '' || email === '' || token === false) {
       setShow(true);
       setTimeout(() => {
         setShow(false);
       }, 3000);
     } else {
-      set_Token(token);
+      
       const infos = await fetch_UserInfos(token);
       console.log(infos);
       //Récupérer les infos de l'utilisateur et les intégrer au store //////////////////////////////
-      set_State([
-        infos.firstName,
-        infos.lastName,
-        token,
-      ]);
+      dispatch(setFirstName(infos.firstName));
+      console.log("infos.firstName", infos.firstName);
+      dispatch(setLastName(infos.lastName));
+      console.log("infos.lastName", infos.lastName);
+      dispatch(setId(infos.id))
+      console.log("infos.id", infos.id);
       console.log("redirection vers user");
       navigate("/user");
     }

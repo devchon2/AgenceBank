@@ -3,21 +3,23 @@ const initialState = {
 };
 
 function firstNameReducer(state = initialState, action) {
-  switch (action.type) {
+      console.log(action.payload);
+switch (action.type) {
     case 'SET_FIRSTNAME':
+      
+      return ({
+        ...state, 
+        firstName: action.payload,
+});
+    case 'GET_FIRSTNAME':
+      return {...state};
+    case 'REMOVE_FIRSTNAME':
       return {
         ...state,
         firstName: action.payload,
       };
-    case 'GET_FIRSTNAME':
-      return state;
-    case 'REMOVE_FIRSTNAME':
-      return {
-        ...state,
-        firstName: null,
-      };
     default:
-      return state;
+      return { ...state};
   }
 }
 

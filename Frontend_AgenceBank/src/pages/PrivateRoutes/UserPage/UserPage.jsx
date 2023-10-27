@@ -1,7 +1,7 @@
 import style from './UserPage.module.css'
-import { get_FtName, get_LtName } from '../../../Services/context.reducer.js'
 import { useState, useEffect } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
+import store from '../../../Redux/store.js'
 import TitleForm from './TitleForm/TitleForm.jsx'
 
 const accounts = [
@@ -27,8 +27,7 @@ const accounts = [
 
 
 export default function UserPage() {
-  const [firstName, setFirstName] = useState(get_FtName())
-  const [lastName, setLastName] = useState(get_LtName())
+  
   const [showSaveBtn, setShowSaveBtn] = useState('hidden')
   const [showCancelBtn, setShowCancelBtn] = useState('hidden')
   const [showEditBtn, setShowEditBtn] = useState('visible')
@@ -52,12 +51,9 @@ export default function UserPage() {
     setShowForm('hidden')
   }
 
-  useEffect(() => {
-    
-    setFirstName(get_FtName())
-    setLastName(get_LtName())
-  }, [firstName,lastName])
+  
 
+  console.log('return de userPage')
   return (
     <main className={style.bg_dark}>
       <div className={style.hero}>

@@ -1,4 +1,5 @@
 
+
 const SET_TOKEN = 'SET_TOKEN';
 
 const setToken = token => ({

@@ -1,21 +1,36 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import style from './TitleForm.module.css'
 import { get_Token, get_FtName, get_LtName, set_State, get_State } from '../../../../Services/context.reducer.js'
 import { put_NewInfos } from '../../../../Services/login.service.js'
-
+import store from "../../../../Redux/store.js"
+import { useDispatch } from "react-redux"
+import { setFirstName } from "../../../../Redux/firstName/firstNameTypes.js"
+import { setLastName } from "../../../../Redux/lastName/lastNameTypes.js"
 export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, showTitle, showForm, Edit_Btn, Cancel_Btn, }) {
-  const [firstName, setFirstName] = useState(get_FtName())
-  const [lastName, setLastName] = useState(get_LtName())
+  const ftName = store.getState().firstName.firstName
+  const ltName = store.getState().lastName.lastName
+  console.log('ftName', ftName)
+
+  const [fstName, setFstName] = useState(ftName)
+  const [lstName, setLstName] = useState(ltName)
+  const dispatch = useDispatch()
+
 async function handle_NewName(e) {
+
       e.preventDefault()
-      const token = get_Token()
+      const token = store.getState().token.token
       console.log('token', token)
-      await put_NewInfos(token, firstName, lastName)
-      set_State([firstName,lastName,token])
+      await put_NewInfos(token, fstName, lstName)
+      dispatch(setFirstName(fstName))
+      dispatch(setLastName(lstName))
       Cancel_Btn()
     }
 
-  
+    useEffect(() => {
+    
+      setFstName(ftName)
+      setLstName(ltName)
+    }, [ftName, ltName])
   
     
 
@@ -31,14 +46,14 @@ async function handle_NewName(e) {
       <>
         <h1 className={style.title}>
           Welcome back
-          <span id='userTitleName' className={`${style.userTitleName} ${title}`} >{`${firstName} ${lastName}`}!</span>
+          <span id='userTitleName' className={`${style.userTitleName} ${title}`} >{`${fstName} ${lstName}`}!</span>
 
           <form id='userTitleForm' className={`${style.userTitleForm} ${form}`} >
 
             <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
 
-              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setFirstName(e.target.value)} />
-              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) => setLastName(e.target.value)} />
+              <input type="text" id="firstName" placeholder={fstName} className={style.userTitleInput} onChange={(e) => setFstName(e.target.value)} />
+              <input type="text" id="lastName" placeholder={lstName} className={style.userTitleInput} onChange={(e) => setLstName(e.target.value)} />
             </div>
             <div className={style.userTitleButtonContainer}>
               <button key={Math.random()} className={`${style.userTitleButton} ${saveBtn}`} type='submit' onClick={handle_NewName}>Save</button>
