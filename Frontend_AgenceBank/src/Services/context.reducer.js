@@ -1,5 +1,3 @@
-
-
 function get_Token(){
   return localStorage.getItem('token')
 }
@@ -12,14 +10,22 @@ function remove_Token(){
   localStorage.removeItem('token')
 }
 
+
+
+
+
 function get_FtName(){
   return get_State().firstName
 }
+
+
+
 
 function get_LtName(){
   return get_State().lastName
 
 }
+
 
 
 function get_State(){

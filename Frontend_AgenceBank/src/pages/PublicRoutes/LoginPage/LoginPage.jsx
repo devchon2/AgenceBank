@@ -9,7 +9,8 @@ import {
   set_State,
   set_Token,
 } from "../../../Services/context.reducer.js";
-
+import {store } from "../../../Redux/store.js";
+import { useSelector, useDispatch } from "react-redux";
 function Forgot({ show }) {
   //fonction qui affiche le message d'erreur si les identifiants sont invalides
 
@@ -29,9 +30,17 @@ function Forgot({ show }) {
  */
 
 export default function LoginPage() {
+
+  const first = useSelector((state) => state.firstName);
+  const last = useSelector((state) => state.lastName);
+  const token = useSelector((state) => state.token);
+
+  const dispatch = useDispatch();
+
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [show, setShow] = useState(false);
+console.log("store", store.getState());
 
   const navigate = useNavigate();
 
@@ -39,6 +48,11 @@ export default function LoginPage() {
     e.preventDefault();
     console.log("entrée dans handleForm");
     const token = await fetch_Token(password, email);
+    //Récupérer le token et l'intégrer au store 
+    dispatch(set_Token(token));
+  
+
+
     console.log("reponse", token);
     console.log("token dans handleForm", token);
 
@@ -51,6 +65,7 @@ export default function LoginPage() {
       set_Token(token);
       const infos = await fetch_UserInfos(token);
       console.log(infos);
+      //Récupérer les infos de l'utilisateur et les intégrer au store //////////////////////////////
       set_State([
         infos.firstName,
         infos.lastName,

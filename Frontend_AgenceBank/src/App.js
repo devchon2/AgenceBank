@@ -7,7 +7,7 @@ import ProfilPage from './pages/PrivateRoutes/ProfilePage/ProfilePage.jsx';
 import PublicLayout from './pages/PublicRoutes/PublicLayout/PublicLayout.jsx';
 import PrivateLayout from './pages/PrivateRoutes/PrivateLayout/PrivateLayout.jsx';
 import ErrorPage from './pages/PublicRoutes/ErrorPage/ErrorPage.jsx';
-import { store } from './Services/store.js';
+import { store } from './Redux/store';
 import { Provider } from 'react-redux';
 
 function App() {
