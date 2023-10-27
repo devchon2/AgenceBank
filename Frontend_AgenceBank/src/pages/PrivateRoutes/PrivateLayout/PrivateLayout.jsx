@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 export default function PrivateLayout() {  
-  const token = store.getState().token
+  const token = useSelector((state) => state.token.token)
 
   console.log('token dans private layout', token)
     
