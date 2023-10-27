@@ -16,6 +16,10 @@
   width: 200px;
 }
 
+.header_FirstName::first-letter{
+  text-transform: uppercase;
+}
+
 
 .header_Link {
   display: flex;

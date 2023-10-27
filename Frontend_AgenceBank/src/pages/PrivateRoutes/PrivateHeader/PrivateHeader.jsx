@@ -47,7 +47,8 @@ const [fstName, setFstName] = useState(firstName)
       <nav className={style.header_Nav}>
       <Link to="/user" className={style.header_Link}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
-      {fstName}
+      <p className={style.header_FirstName}>      {fstName}
+</p>
       </Link>
       <Link to="/login" className={style.header_Link} onClick={HandleLogout}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faSignOut}/>

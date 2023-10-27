@@ -37,7 +37,18 @@
 }
 
 .userTitleName{
-  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.userTitleName span{
+  font-size:1.8rem;
+  font-weight:bold;
+  margin: 0 0.5rem;
+}
+
+.userTitleName span::first-letter{
+  text-transform:uppercase;
 }
 
 
@@ -68,7 +79,31 @@
   outline:none;
 }
 
+.userTitleInput::first-letter{
+  text-transform:uppercase;
+}
+
 .userTitleInput::-webkit-input-placeholder{
+  color:#46296f;
+  font-weight:bold;
+}
+
+.userTitleInput::-moz-placeholder{
+  color:#46296f;
+  font-weight:bold;
+}
+
+.userTitleInput:-ms-input-placeholder{
+  color:#46296f;
+  font-weight:bold;
+}
+
+.userTitleInput::-ms-input-placeholder{
+  color:#46296f;
+  font-weight:bold;
+}
+
+.userTitleInput::placeholder{
   color:#46296f;
   font-weight:bold;
 }
