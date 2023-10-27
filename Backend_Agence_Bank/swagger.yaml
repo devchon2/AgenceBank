@@ -110,6 +110,24 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /user/accounts:
+    post:
+     security:
+      - Bearer: []
+
+     tags:
+     -Fect user Accounts infos
+     summary: User Accounts API
+     description: API for fetching user Accounts
+     parameters:
+      in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+     produces:
+        - application/json
+
+     responses:
 securityDefinitions:
   Bearer:
     type: apiKey

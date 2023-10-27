@@ -1,16 +1,15 @@
-import axios from 'axios';
+import Axios from 'axios';
 
 async function fetch_Token(password, email) {
 
   try {
-    axios.defaults.baseURL = 'http://localhost:3001';
-    const basePath = '/api/v1';
-    const reponse = await axios.request({
+    Axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+    const reponse = await Axios.request({
       headers: {
         'Content-Type': 'application/json',
       },
       method: 'post',
-      url: `${basePath}/user/login`,
+      url: `/user/login`,
       data: {
         'email': email,
         'password': password
@@ -33,16 +32,15 @@ async function fetch_Token(password, email) {
 async function fetch_UserInfos(token) {
 
 
-  axios.defaults.baseURL = 'http://localhost:3001';
-  const basePath = '/api/v1';
+  
 
-  const user = await axios.request({
+  const user = await Axios.request({
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     },
     method: 'post',
-    url: `${basePath}/user/profile`,
+    url: `/user/profile`,
     
   })
   if (user.data.status === 200) {
@@ -54,7 +52,7 @@ async function fetch_UserInfos(token) {
 async function put_NewInfos(token, firstName, lastName) {
 
 
-  const reponse = await axios.request(
+  const reponse = await Axios.request(
     {
       method: 'put',
       url: 'http://localhost:3001/api/v1/user/profile',
