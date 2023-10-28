@@ -17,6 +17,7 @@ export default function PrivateHeader() {
     
     const firstName = useSelector(state => state.firstName.firstName)
 const [fstName, setFstName] = useState(firstName)
+    const dispatch = useDispatch()
 
   useEffect(() => {          
     
@@ -27,13 +28,11 @@ const [fstName, setFstName] = useState(firstName)
 
   const navigate = useNavigate();
   const HandleLogout = () => {    
-    const dispatch = useDispatch()
 
     dispatch(removeToken())
     dispatch(removeFirstName())
     dispatch(removeLastName())
     dispatch(removeId())
-
     navigate('/login');
   }
 
