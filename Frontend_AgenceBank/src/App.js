@@ -2,8 +2,8 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/PublicRoutes/LoginPage/LoginPage.jsx';
 import Home from './pages/PublicRoutes/HomePage/HomePage.jsx';
-import UserPage from './pages/PrivateRoutes/UserPage/UserPage.jsx';
-import ProfilPage from './pages/PrivateRoutes/ProfilePage/ProfilePage.jsx';
+import ProfilePage from './pages/PrivateRoutes/ProfilePage/ProfilePage.jsx';
+import AccountPage from './pages/PrivateRoutes/AccountPage/AccountPage.jsx';
 import PublicLayout from './pages/PublicRoutes/PublicLayout/PublicLayout.jsx';
 import PrivateLayout from './pages/PrivateRoutes/PrivateLayout/PrivateLayout.jsx';
 import ErrorPage from './pages/PublicRoutes/ErrorPage/ErrorPage.jsx';
@@ -25,8 +25,8 @@ function App() {
 
 
         <Route path="/" element={<PrivateLayout />} >
-          <Route path="/user" element={<UserPage />} />
-          <Route path="/profile" element={<ProfilPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/account/:id" element={<AccountPage  />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
            

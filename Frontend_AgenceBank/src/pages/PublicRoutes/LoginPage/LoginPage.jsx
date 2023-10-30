@@ -67,7 +67,7 @@ const dispatch = useDispatch();
       dispatch(setId(infos.id))
       console.log("infos.id", infos.id);
       console.log("redirection vers user");
-      navigate("/user");
+      navigate("/profile");
     }
     return;
   };

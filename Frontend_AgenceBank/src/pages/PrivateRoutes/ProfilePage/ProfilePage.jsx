@@ -1,90 +1,69 @@
 import style from './ProfilePage.module.css'
-import TransactionModule from './TransactionCount/TransactionModule'
+import { useState } from 'react'
+import CountComponent from './Transactions/Transaction.jsx'
+import TitleForm from './TitleForm/TitleForm.jsx'
 
-const Datas = [
-  { date: 'June 20th, 2020',
-  description: 'Golden Sun Bakery',
-  amount: '5.00',
-  balance: '2,082.79',
-  category: 'Food',
-  transactionType: 'Electronic',
-  notes: '',
-},
-{ date: 'June 20th, 2020',
-  description: 'Golden Sun Bakery',
-  amount: '5.00',
-  balance: '2,082.79',
-  category: 'Food',
-  transactionType: 'Electronic',
-  notes: '',
-},
-{ date: 'June 20th, 2020',
-description: 'Golden Sun Bakery',
-amount: '5.00',
-balance: '2,082.79',
-category: 'Food',
-transactionType: 'Electronic',
-notes: '',
-},
-{ date: 'June 20th, 2020',
-description: 'Golden Sun Bakery',
-amount: '5.00',
-balance: '2,082.79',
-category: 'Food',
-transactionType: 'Electronic',
-notes: '',
-},
-{ date: 'June 20th, 2020',
-description: 'Golden Sun Bakery',
-amount: '5.00',
-balance: '2,082.79',
-category: 'Food',
-transactionType: 'Electronic',
-notes: '',
-},
-{ date: 'June 20th, 2020',
-description: 'Golden Sun Bakery',
-amount: '5.00',
-balance: '2,082.79',
-category: 'Food',
-transactionType: 'Electronic',
-notes: '',
-},
+const accounts = [
+  {
+    id: 1,
+    title: 'Argent Bank Checking (x8349)',
+    amount: '2,082.79',
+    balanceType: 'Available Balance',
+  },
+  {
+    id: 2,
+    title: 'Argent Bank Savings (x6712)',
+    amount: '10,928.42',
+    balanceType: 'Available Balance',
+  },
+  {
+    id: 3,
+    title: 'Argent Bank Credit Card (x8349)',
+    amount: '184.30',
+    balanceType: 'Current Balance',
+  },
 ]
 
+export default function UserPage() {
+  
+  const [showSaveBtn, setShowSaveBtn] = useState('hidden')
+  const [showCancelBtn, setShowCancelBtn] = useState('hidden')
+  const [showEditBtn, setShowEditBtn] = useState('visible')
+  const [showTitle, setShowTitle] = useState('visible')
+  const [showForm, setShowForm] = useState('hidden')
 
 
+  function handle_Edit_Btn() {
+    setShowSaveBtn('visible')
+    setShowCancelBtn('visible')
+    setShowEditBtn('hidden')
+    setShowTitle('hidden')
+    setShowForm('visible')
+  }
 
-export default function ProfilePage() {
+  function handle_Cancel_Btn() {
+    setShowSaveBtn('hidden')
+    setShowCancelBtn('hidden')
+    setShowEditBtn('visible')
+    setShowTitle('visible')
+    setShowForm('hidden')
+  }
+
+  
+
+  console.log('return de userPage')
   return (
-    <main className={style.main}>
-      <section className={style.available}>
-        <p className={style.title}>Argent Bank Checking (x8349)</p>
-        <p className={style.amount}>$ 2,082.79</p>
-        <p className={style.balanceType}>Available Balance</p>
-      </section>
-      <section className={style.transactionSection}>
-        <div className={style.header}>
+    <main className={style.bg_dark}>
+      <div className={style.hero}>
+        <TitleForm showSaveBtn={showSaveBtn} showCancelBtn={showCancelBtn} showEditBtn={showEditBtn} showTitle={showTitle} showForm={showForm}  Edit_Btn={handle_Edit_Btn} Cancel_Btn={handle_Cancel_Btn}   />
 
-          <h2 className={style.headerTransaction}>Date</h2>
-          <h2 className={style.headerTransaction}>Description</h2>
-          <h2 className={style.headerTransaction}>Amount</h2>
-          <h2 className={style.headerTransaction}>Balance</h2>
-        </div>
-      {Datas.map((obj, index) =>{
-        console.log('date', obj.date)
-        console.log('description', obj.description)
-        console.log('amount', obj.amount)
-        console.log('balance', obj.balance)
-        console.log('category', obj.category)
-        console.log('transactionType', obj.transactionType)
-        console.log('Notes', obj.notes)
-        return (<TransactionModule key={index} date={obj.date} description={obj.description} amount={obj.amount} balance={obj.balance} category={obj.category} transactionType={obj.transactionType} />)
-})}
-      
-      
-      </section>
+      </div>
+
+
+      {accounts.map((account) => (
+        <CountComponent key={account.id} id={account.id} count={account.amount} title={account.title} balanceType={account.balanceType} />
+      ))}
+
     </main>
   )
 }
-        
