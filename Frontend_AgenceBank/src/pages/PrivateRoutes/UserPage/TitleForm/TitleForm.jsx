@@ -7,30 +7,30 @@ import { setLastName } from "../../../../Redux/lastName/lastNameTypes.js"
 
 
 export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, showTitle, showForm, Edit_Btn, Cancel_Btn, }) {
-  const ftName = useSelector(state => state.firstName.firstName)
-  const ltName = useSelector(state => state.lastName.lastName)
+  const ftName = useSelector(state => state.firstName)
+  const ltName = useSelector(state => state.lastName)
   console.log('ftName', ftName)
 
-  const [fstName, setFstName] = useState(ftName)
-  const [lstName, setLstName] = useState(ltName)
+  const [firstName, setfirstName] = useState(ftName)
+  const [lastName, setlastName] = useState(ltName)
   const dispatch = useDispatch()
-const token = useSelector(state => state.token.token)
+const token = useSelector(state => state.token)
   async function handle_NewName(e) {
 
     e.preventDefault()
     
     console.log('token', token)
 
-    await put_NewInfos(token, fstName, lstName)
-    dispatch(setFirstName(fstName))
-    dispatch(setLastName(lstName))
+    await put_NewInfos(token, firstName, lastName)
+    dispatch(setFirstName(firstName))
+    dispatch(setLastName(lastName))
     Cancel_Btn()
   }
 
   useEffect(() => {
 
-    setFstName(ftName)
-    setLstName(ltName)
+    setfirstName(ftName)
+    setlastName(ltName)
   }, [ftName, ltName])
 
 
@@ -48,15 +48,15 @@ const token = useSelector(state => state.token.token)
       <h1 className={style.title}>
         Welcome back
         <div id='userTitleName' className={`${style.userTitleName} ${title}`}>
-          <span className={style.firstName} > {`${fstName} `}</span>
-          <span className={style.lastName} > {`${lstName}`} </span> !</div>
+          <span className={style.firstName} > {`${firstName} `}</span>
+          <span className={style.lastName} > {`${lastName}`} </span> !</div>
 
           <form id='userTitleForm' className={`${style.userTitleForm} ${form}`} >
 
             <div id='userTitleButtonContainer' className={style.userTitleInputContainer}>
 
-              <input type="text" id="firstName" placeholder={fstName} className={style.userTitleInput} onChange={(e) => setFstName(e.target.value)} />
-              <input type="text" id="lastName" placeholder={lstName} className={style.userTitleInput} onChange={(e) => setLstName(e.target.value)} />
+              <input type="text" id="firstName" placeholder={firstName} className={style.userTitleInput} onChange={(e) => setfirstName(e.target.value)} />
+              <input type="text" id="lastName" placeholder={lastName} className={style.userTitleInput} onChange={(e) => setlastName(e.target.value)} />
             </div>
             <div className={style.userTitleButtonContainer}>
               <button key={Math.random()} className={`${style.userTitleButton} ${saveBtn}`} type='submit' onClick={handle_NewName}>Save</button>

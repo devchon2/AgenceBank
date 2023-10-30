@@ -15,8 +15,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function PrivateHeader() {
     
-    const firstName = useSelector(state => state.firstName.firstName)
-const [fstName, setFstName] = useState(firstName)
+    const firstName = useSelector(state => state.firstName)
+    const [fstName, setFstName] = useState(firstName)
     const dispatch = useDispatch()
 
   useEffect(() => {          

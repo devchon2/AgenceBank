@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux'
 
 
 export default function PrivateLayout() {  
-  const token = useSelector((state) => state.token.token)
-
-  console.log('token dans private layout', token)
+  const token = useSelector((state) => state.token)
+  console.log(useSelector((state) => state  ))
+  console.log('token dans private layout', )
     
   if (!token) {
     return (

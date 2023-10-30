@@ -1,15 +1,9 @@
-const initialState = {
-  id: null,
-};
 
-function idReducer(state = initialState, action) {
+function idReducer(state = null, action) {
   switch (action.type) {
     case 'SET_ID':
       console.log('id reducer set id');
-      return {
-        ...state,
-        id: action.payload,
-      };
+      return action.payload
     
     case 'REMOVE_ID':
       return {

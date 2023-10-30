@@ -19,7 +19,6 @@ const REMOVE_FIRSTNAME = 'REMOVE_FIRSTNAME';
 
   const removeFirstName = () => ({
   type: REMOVE_FIRSTNAME,
-  payload:null
 
 });
 
