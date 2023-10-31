@@ -5,10 +5,10 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetch_UserInfos } from "../../Services/login.service.js";
-import { setFirstName } from "../../Redux/firstName/firstNameTypes.js";
-import { setLastName } from "../../Redux/lastName/lastNameTypes.js";
+import { setFirstName } from "../../Redux/UserReducer/firstName/firstNameTypes.js";
+import { setLastName } from "../../Redux/UserReducer/lastName/lastNameTypes.js";
 import { setToken } from "../../Redux/token/tokenTypes.js";
-import { setId } from "../../Redux/id/idTypes.js";
+import { setId } from "../../Redux/UserReducer/id/idTypes.js";
 
 
 import { useDispatch } from "react-redux";

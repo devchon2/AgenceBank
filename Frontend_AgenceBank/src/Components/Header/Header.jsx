@@ -5,10 +5,10 @@ import Logo from '../../assets/argentBankLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import { removeLastName } from '../../Redux/lastName/lastNameTypes.js'
-import  { removeFirstName }  from '../../Redux/firstName/firstNameTypes.js';
+import { removeLastName } from '../../Redux/UserReducer/lastName/lastNameTypes.js'
+import  { removeFirstName }  from '../../Redux/UserReducer/firstName/firstNameTypes.js';
 import { removeToken } from '../../Redux/token/tokenTypes.js';
-import { removeId } from '../../Redux/id/idTypes.js';
+import { removeId } from '../../Redux/UserReducer/id/idTypes.js';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -17,7 +17,7 @@ export default function Header() {
   const isConnected = useSelector(state => state.token)
   const[isLogged , setIsLogged] = useState(isConnected)
   
-  const firstName = useSelector(state => state.firstName)
+  const firstName = useSelector(state => state.user.firstName)
   const [fstName, setFstName] = useState(firstName)
 
   

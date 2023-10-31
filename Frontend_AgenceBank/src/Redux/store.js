@@ -1,14 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import firstNameReducer from './firstName/firstNameSlice.js';
-import lastNameReducer from './lastName/lastNameSlice';
-import idReducer from './id/idSlice';
+import userReducer from './UserReducer/UserSlice.js';
 import tokenReducer from './token/tokenSlice';
 import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
-  firstName: firstNameReducer,
-  lastName: lastNameReducer,
-  id: idReducer,
+  user:userReducer,
   token: tokenReducer,
 });
 
