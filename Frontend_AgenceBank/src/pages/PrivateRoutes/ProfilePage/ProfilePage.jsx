@@ -2,6 +2,7 @@ import style from './ProfilePage.module.css'
 import { useState } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
 import TitleForm from './TitleForm/TitleForm.jsx'
+import store from '../../../Redux/store.js'
 
 const accounts = [
   {
@@ -51,13 +52,13 @@ export default function UserPage() {
 
   
 
-  console.log('return de userPage')
   return (
     <main className={style.bg_dark}>
       <div className={style.hero}>
         <TitleForm showSaveBtn={showSaveBtn} showCancelBtn={showCancelBtn} showEditBtn={showEditBtn} showTitle={showTitle} showForm={showForm}  Edit_Btn={handle_Edit_Btn} Cancel_Btn={handle_Cancel_Btn}   />
 
       </div>
+    {console.log('state global', store.getState())}
 
 
       {accounts.map((account) => (

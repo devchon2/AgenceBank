@@ -9,7 +9,6 @@ import { setLastName } from "../../../../Redux/lastName/lastNameTypes.js"
 export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, showTitle, showForm, Edit_Btn, Cancel_Btn, }) {
   const ftName = useSelector(state => state.firstName)
   const ltName = useSelector(state => state.lastName)
-  console.log('ftName', ftName)
 
   const [firstName, setfirstName] = useState(ftName)
   const [lastName, setlastName] = useState(ltName)
@@ -19,8 +18,6 @@ const token = useSelector(state => state.token)
 
     e.preventDefault()
     
-    console.log('token', token)
-
     await put_NewInfos(token, firstName, lastName)
     dispatch(setFirstName(firstName))
     dispatch(setLastName(lastName))

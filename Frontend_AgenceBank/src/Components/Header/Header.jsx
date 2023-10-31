@@ -1,34 +1,38 @@
-import style from './PrivateHeader.module.css';
+import style from './Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faSignOut } from '@fortawesome/free-solid-svg-icons'
-import Logo from '../../../assets/argentBankLogo.png';
+import Logo from '../../assets/argentBankLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import { removeLastName } from '../../../Redux/lastName/lastNameTypes.js';
-import  { removeFirstName }  from '../../../Redux/firstName/firstNameTypes.js';
-import { removeToken } from '../../../Redux/token/tokenTypes.js';
-import { removeId } from '../../../Redux/id/idTypes.js';
+import { removeLastName } from '../../Redux/lastName/lastNameTypes.js'
+import  { removeFirstName }  from '../../Redux/firstName/firstNameTypes.js';
+import { removeToken } from '../../Redux/token/tokenTypes.js';
+import { removeId } from '../../Redux/id/idTypes.js';
 import { useDispatch, useSelector } from 'react-redux';
 
 
+export default function Header() {
+  
+  const isConnected = useSelector(state => state.token)
+  const[isLogged , setIsLogged] = useState(isConnected)
+  
+  const firstName = useSelector(state => state.firstName)
+  const [fstName, setFstName] = useState(firstName)
 
-export default function PrivateHeader() {
+  
     
-    const firstName = useSelector(state => state.firstName)
-    const [fstName, setFstName] = useState(firstName)
-    const dispatch = useDispatch()
 
   useEffect(() => {          
     
-
+    setIsLogged(isConnected)
     setFstName(firstName)
-  }, [firstName])
+  }, [firstName, isConnected])
 
 
   const navigate = useNavigate();
   const HandleLogout = () => {    
-
+    const dispatch = useDispatch();
     dispatch(removeToken())
     dispatch(removeFirstName())
     dispatch(removeLastName())
@@ -36,7 +40,7 @@ export default function PrivateHeader() {
     navigate('/login');
   }
 
-  console.log('return de privateHeader')
+if (isLogged) {
   return (
     <header className={style.header}>
       <Link to="/" className={style.header_Logo_Link}>
@@ -44,7 +48,7 @@ export default function PrivateHeader() {
       </Link>
 
       <nav className={style.header_Nav}>
-      <Link to="/user" className={style.header_Link}>
+      <Link to="/profile" className={style.header_Link}>
       <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
       <p className={style.header_FirstName}>      {fstName}
 </p>
@@ -54,7 +58,22 @@ export default function PrivateHeader() {
         Sign Out
       </Link>
       </nav>
+    </header>
+  )
+  } else {
+  return (
+    <header className={style.header}>
+      <Link to="/" className={style.header_Logo_Link}>
+      <img src={Logo} alt="Argent Bank Logo" className={style.header_Logo} />
+      <h1 className={style.sr_only}>Accounts</h1>
+      </Link>
+
+      <Link to="/login" className={style.header_Link}>
+      <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
+      Sign in
+      </Link>
       
     </header>
   )
+}
 }

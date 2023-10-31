@@ -1,14 +1,14 @@
 import style from "./LoginPage.module.css";
-import { fetch_Token } from "../../../Services/login.service.js";
+import { fetch_Token } from "../../Services/login.service.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { fetch_UserInfos } from "../../../Services/login.service.js";
-import { setFirstName } from "../../../Redux/firstName/firstNameTypes.js";
-import { setLastName } from "../../../Redux/lastName/lastNameTypes.js";
-import { setToken } from "../../../Redux/token/tokenTypes.js";
-import { setId } from "../../../Redux/id/idTypes.js";
+import { fetch_UserInfos } from "../../Services/login.service.js";
+import { setFirstName } from "../../Redux/firstName/firstNameTypes.js";
+import { setLastName } from "../../Redux/lastName/lastNameTypes.js";
+import { setToken } from "../../Redux/token/tokenTypes.js";
+import { setId } from "../../Redux/id/idTypes.js";
 
 
 import { useDispatch } from "react-redux";
@@ -58,15 +58,10 @@ const dispatch = useDispatch();
     } else {
       
       const infos = await fetch_UserInfos(token);
-      console.log(infos);
       //Récupérer les infos de l'utilisateur et les intégrer au store //////////////////////////////
       dispatch(setFirstName(infos.firstName));
-      console.log("infos.firstName", infos.firstName);
       dispatch(setLastName(infos.lastName));
-      console.log("infos.lastName", infos.lastName);
       dispatch(setId(infos.id))
-      console.log("infos.id", infos.id);
-      console.log("redirection vers user");
       navigate("/profile");
     }
     return;
@@ -94,7 +89,6 @@ const dispatch = useDispatch();
               autoComplete="off"
               onChange={(e) => {
                 setEmail(e.target.value);
-                console.log("email", email);
               }}
             />
           </div>
@@ -111,7 +105,6 @@ const dispatch = useDispatch();
               name="password"
               onChange={(e) => {
                 setPassword(e.target.value);
-                console.log("password", password);
               }}
             />
             <Forgot show={show} />

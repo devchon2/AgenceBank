@@ -1,9 +1,9 @@
 
 import style from './HomePage.module.css'
 import Hero from './Hero/Hero.jsx';
-import iconChat from '../../../assets/icon-chat.png';
-import iconMoney from '../../../assets/icon-money.png';
-import iconSecurity from '../../../assets/icon-security.png';
+import iconChat from '../../assets/icon-chat.png';
+import iconMoney from '../../assets/icon-money.png';
+import iconSecurity from '../../assets/icon-security.png';
 import HomeFeature from './HomeFeatureItem/HomeFeature.jsx';
 
 const featuresArray = [
