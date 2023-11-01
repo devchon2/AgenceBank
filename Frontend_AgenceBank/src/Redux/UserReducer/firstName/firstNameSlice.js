@@ -1,7 +1,6 @@
-const initialState = null;
 
 
-function firstNameReducer(state = initialState, action) {
+function firstNameReducer(state = null, action) {
 switch (action.type) {
     case 'SET_FIRSTNAME':
       return action.payload
@@ -9,7 +8,7 @@ switch (action.type) {
     case 'GET_FIRSTNAME':
       return state;
     case 'REMOVE_FIRSTNAME':
-      return initialState;
+      return state;
     default:
       return state;
   }

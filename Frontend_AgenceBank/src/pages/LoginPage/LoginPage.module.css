@@ -1,106 +1,117 @@
-.loginPage{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  height:100%;
-  width:100%;
-  width:100%;
-
-}
-
-.hidden{
-  display:none;
-}
-
-.visible{
-  display:block;
-}
-
-.bg_dark {
-  display: block;
-  background-color: #12002b;
-  flex-grow: 1;
-}
-
-.forgot{
-  padding-top:10px;
-  font-size:1.2vh;
-  color:red;
-  text-align: end;
-}
-
-
-.signIn_Container {
+/* ---------------------------
+   Styles généraux de la page de connexion
+   --------------------------- */
+   .loginPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* ------------------------------
+     Styles pour le message d'erreur
+     ------------------------------ */
+  .forgot {
+    padding-top: 10px;
+    font-size: 1.2vh;
+    color: red;
+    text-align: end;
+  }
+  
+  /* ------------------------------
+     Styles pour le conteneur principal
+     ------------------------------ */
+  .signIn_Container {
     background-color: white;
     width: 300px;
     margin: 0 auto;
     margin-top: 3rem;
     padding: 2rem;
-}
-
-.title_Login_Icon{
-  display: inline-block;
+  }
+  
+  /* --------------------------------------
+     Styles pour l'icône et le titre
+     -------------------------------------- */
+  .title_Login_Icon {
+    display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-}
-
-.title{
-  font-size: 1.5em;
-  -webkit-margin-before: 0.83em;
-          margin-block-start: 0.83em;
-  -webkit-margin-after: 0.83em;
-          margin-block-end: 0.83em;
-}
-
-form{
-  display: block;
-  margin-top: 0em;
-}
-
-.input_Container{
-  display: flex;
+  }
+  
+  .title {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+  }
+  
+  /* --------------------------------------
+     Styles pour le formulaire
+     -------------------------------------- */
+  form {
+    display: block;
+    margin-top: 0;
+  }
+  
+  .input_Container {
+    display: flex;
     flex-direction: column;
     text-align: left;
     margin-bottom: 1rem;
+  }
   
-
-}
-
-.label{
-  font-weight: bold
-}
-
-.input_Check_Container{
-  display:flex;
-}
-
-.input{
-  padding: 5px;
-  margin-bottom: 22px;
+  .label {
+    font-weight: bold;
+  }
+  
+  .input {
+    padding: 5px;
+    margin-bottom: 22px;
     font-size: 1.2rem;
-}
-
-.label_Check{
-  font-weight: normal;
-  margin-margin-left:0.25rem;
-}
-
-.input_Check{
-  margin:3px 10px 3px 4px;
-}
-
-.button{
-  display: block;
-  width: 100%;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  background-color: #00bc77;
-  color: #fff;
-  border:none;
-  text-decoration:underline;
-}
+  }
+  
+  .input_Check_Container {
+    display: flex;
+  }
+  
+  .input_Check {
+    margin: 3px 10px 3px 4px;
+  }
+  
+  .label_Check {
+    font-weight: normal;
+    margin-left: 0.25rem;
+  }
+  
+  .button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    background-color: #00bc77;
+    color: #fff;
+    border: none;
+    text-decoration: underline;
+  }
+  
+  /* --------------------------------------
+     Styles pour les classes utilitaires
+     -------------------------------------- */
+  .hidden {
+    display: none;
+  }
+  
+  .visible {
+    display: block;
+  }
+  
+  .bg_dark {
+    display: block;
+    background-color: #12002b;
+    flex-grow: 1;
+  }
+  

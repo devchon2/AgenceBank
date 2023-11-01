@@ -11,14 +11,15 @@ import { Provider } from 'react-redux';
 import store from './Redux/store'
 
 
+
 function App() {
   return (
-  <Provider store={store}>
     <Routes>
     <Route path="/" element={<Layout />} >
       <Route index element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route element={<PrivateRoutes />} >
+      
+      <Route path='/' element={<PrivateRoutes />} >
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/account/:id" element={<AccountPage />} />
       </Route>
@@ -26,7 +27,6 @@ function App() {
     </Route>
     </Routes>
     
-  </Provider>
    )
 }
 

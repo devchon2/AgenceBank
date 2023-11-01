@@ -1,6 +1,6 @@
-const initialState = null;
 
-function lastNameReducer(state = initialState, action) {
+
+function lastNameReducer(state=null, action) {
   switch (action.type) {
     case 'SET_LASTNAME':
       return action.payload

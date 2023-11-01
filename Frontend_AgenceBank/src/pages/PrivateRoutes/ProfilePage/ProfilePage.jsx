@@ -25,7 +25,7 @@ const accounts = [
   },
 ]
 
-export default function UserPage() {
+export default function ProfilePage() {
   
   const [showSaveBtn, setShowSaveBtn] = useState('hidden')
   const [showCancelBtn, setShowCancelBtn] = useState('hidden')

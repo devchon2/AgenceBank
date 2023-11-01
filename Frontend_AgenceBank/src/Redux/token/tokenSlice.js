@@ -1,12 +1,12 @@
-const initialState = null;
 
 
-function tokenReducer(state = initialState, action) {
+
+function tokenReducer(state = null, action) {
   switch (action.type) {
     case 'SET_TOKEN':
       return action.payload
     case 'REMOVE_TOKEN':
-      return initialState;
+      return state;
     default:
       return state;
   }
