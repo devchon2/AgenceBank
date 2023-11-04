@@ -1,30 +1,29 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
-import { useState } from 'react'
+
 
 import { useSelector } from 'react-redux'
-import store from '../../Redux/store.js'
 
 
 export default function PrivateRoutes() {  
-  const tokenInState =  store.getState().token 
+  const tok = useSelector(state => state.login.token)
+  const [token, setToken] = useState(tok)
+
+  useEffect(() => {
+    setToken(tok)
+  }
+    , [tok])
 
 
 
-  
-
-  console.log('tokenInState', !!tokenInState)
-
-  if (!!tokenInState === true) {
-    console.log('retour privateRoutes ok', tokenInState)
+  if (!token) {
+    return (
+     <Navigate to='/login'/>
+    )
+  }
   return (
     <Outlet />
-      
-    
-
-  )}
-
-  console.log('retour privateRoutes ko', tokenInState)
-  return <Navigate to="/login" />
+     
+  )
 }

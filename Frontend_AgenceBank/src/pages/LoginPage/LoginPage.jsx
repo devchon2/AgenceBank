@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import style from './LoginPage.module.css';
-import { fetch_Token, fetch_UserInfos } from '../../Services/login.service.js';
-import {setFirstName}  from '../../Redux/UserReducer/firstName/firstNameTypes.js';
-import  {setLastName}  from '../../Redux/UserReducer/lastName/lastNameTypes.js';
-import  {setId}  from '../../Redux/UserReducer/id/idTypes.js';
-import  {setToken}  from '../../Redux/token/tokenTypes.js';
+import style from "./LoginPage.module.css";
+import { fetch_Token } from "../../Services/login.service.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { fetch_UserInfos } from "../../Services/login.service.js";
+import { set_Token, set_IsAuth, set_KeepLogging } from "../../Redux/AuthReducer/AuthSlice.js";
+import { set_User } from "../../Redux/UserReducer/UserSlice.js";
 
-/**
- * Composant pour afficher un message d'erreur pour les identifiants invalides
- * @param {boolean} show - Afficher ou masquer le message d'erreur
- * @returns {JSX.Element|null}
- */
+import { useDispatch, useSelector } from "react-redux";
+
+
+
 function Forgot({ show }) {
+  //fonction qui affiche le message d'erreur si les identifiants sont invalides
+
   if (show) {
     return (
       <div className={style.forgot}>
@@ -27,48 +26,63 @@ function Forgot({ show }) {
 }
 
 /**
- * Composant LoginPage - Gère la page de connexion de l'application
- * @returns {JSX.Element}
+ * Composant de la page de connexion.
+ * @returns {JSX.Element} Élément JSX représentant la page de connexion.
  */
+
 export default function LoginPage() {
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [remember, setRemember] = useState(false);
   const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  /**
-   * Gère la soumission du formulaire de connexion
-   * @param {Event} e - L'événement de soumission du formulaire
-   */
+  const handleCheck = () => {
+    //Fonction qui permet de cocher la case "Remember me" si l'utilisateur a déjà coché cette case
+    const check = document.getElementById("remember");
+    if (check.checked) {
+      console.log("checked");
+      setRemember(true);
+    } 
+    
+  };
   const handle_Form = async (e) => {
     e.preventDefault();
-
-    // Récupération du token
+if (remember) {
+        dispatch(set_KeepLogging(true));
+      }
     const token = await fetch_Token(password, email);
-    dispatch(setToken(token));
+    console.log(token);      
+    dispatch(set_IsAuth(true));
 
-    // Vérification des identifiants
-    if (!password || !email || !token) {
+    //Récupérer le token et l'intégrer au store 
+    dispatch(set_Token(token));
+    
+    if (password === '' || email === '' || token === null) {
       setShow(true);
-      setTimeout(() => setShow(false), 3000);
+      setTimeout(() => {
+        setShow(false);
+      }, 3000);
     } else {
-      // Récupération des informations de l'utilisateur
       const infos = await fetch_UserInfos(token);
-      dispatch(setFirstName(infos.firstName));
-      dispatch(setLastName(infos.lastName));
-      dispatch(setId(infos.id));
-
-      // Redirection vers la page de profil
-      navigate('/profile');
+      console.log(infos);
+      //Récupérer les infos de l'utilisateur et les intégrer au store //////////////////////////////
+      dispatch(set_User({firstName:infos.firstName,lastName:infos.lastName,email:email,password:password,id:infos.id}));
+      navigate("/profile");
     }
+    return;
   };
+
+
 
   return (
     <main className={style.bg_dark}>
       <div className={style.signIn_Container}>
-        <FontAwesomeIcon className={style.title_Login_Icon} icon={faUserCircle} />
+        <FontAwesomeIcon
+          className={style.title_Login_Icon}
+          icon={faUserCircle}
+        />
         <h1 className={style.title}>Sign In</h1>
         <form>
           <div className={style.input_Container}>
@@ -110,12 +124,12 @@ export default function LoginPage() {
               type="checkbox"
               id="remember"
               name="Remember me"
+              onClick={handleCheck}
             />
             <label className={style.label_Check_} htmlFor="remember">
               Remember me
             </label>
           </div>
-        </form>
 
           <div className={style.button_container}>
             <button
@@ -126,6 +140,7 @@ export default function LoginPage() {
               Sign in
             </button>
           </div>
+        </form>
       </div>
     </main>
   );

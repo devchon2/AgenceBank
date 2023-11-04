@@ -1,13 +1,38 @@
-import firstNameReducer from "./firstName/firstNameSlice";
-import lastNameReducer from "./lastName/lastNameSlice";
-import idReducer from "./id/idSlice";
+import { createSlice } from "@reduxjs/toolkit";
 
-import { combineReducers } from "@reduxjs/toolkit";
 
-const userReducer = combineReducers({
-  firstName: firstNameReducer,
-  lastName: lastNameReducer,
-  id: idReducer,
-});
 
-export default userReducer;
+const userSlice =  createSlice({
+    name: "user",
+    initialState: {
+        firstName: null,
+        lastName: null,
+        email: null,
+        password: null,
+        id: null,
+    },
+    reducers: {
+        set_FirstName : (state, action) => {
+        state.firstName = action.payload;
+        },
+        set_LastName : (state, action) => {
+        state.lastName = action.payload;
+        },
+        set_User : (state, action) => {
+        state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
+        state.email = action.payload.email;
+        state.password = action.payload.password;
+        state.id = action.payload.id;
+        },
+        remove_User : (state,action) => {
+        state.firstName = null;
+        state.lastName = null;
+        state.email = null;
+        state.password = null;
+        state.id = null;
+        }
+    }
+    });
+export default userSlice.reducer;
+export const { set_FirstName, set_LastName, set_User, remove_User  } = userSlice.actions;

@@ -25,7 +25,7 @@ const accounts = [
   },
 ]
 
-export default function ProfilePage() {
+export default function UserPage() {
   
   const [showSaveBtn, setShowSaveBtn] = useState('hidden')
   const [showCancelBtn, setShowCancelBtn] = useState('hidden')
@@ -58,7 +58,6 @@ export default function ProfilePage() {
         <TitleForm showSaveBtn={showSaveBtn} showCancelBtn={showCancelBtn} showEditBtn={showEditBtn} showTitle={showTitle} showForm={showForm}  Edit_Btn={handle_Edit_Btn} Cancel_Btn={handle_Cancel_Btn}   />
 
       </div>
-    {console.log('state global', store.getState())}
 
 
       {accounts.map((account) => (

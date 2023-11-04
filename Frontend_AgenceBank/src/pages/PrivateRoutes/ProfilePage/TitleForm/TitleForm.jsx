@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import style from './TitleForm.module.css'
 import { put_NewInfos } from '../../../../Services/login.service.js'
 import { useDispatch, useSelector } from "react-redux"
-import { setFirstName } from "../../../../Redux/UserReducer/firstName/firstNameTypes.js"
-import { setLastName } from "../../../../Redux/UserReducer/lastName/lastNameTypes.js"
+import { set_FirstName, set_LastName } from "../../../../Redux/UserReducer/UserSlice.js"
+
 
 
 export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, showTitle, showForm, Edit_Btn, Cancel_Btn, }) {
@@ -13,14 +13,14 @@ export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, sho
   const [fstName, setfstName] = useState(ftName)
   const [lstName, setlstName] = useState(ltName)
   const dispatch = useDispatch()
-const token = useSelector(state => state.token)
+const token = useSelector(state => state.login.token)
   async function handle_NewName(e) {
 
     e.preventDefault()
     
     await put_NewInfos(token, fstName, lstName)
-    dispatch(setFirstName(fstName))
-    dispatch(setLastName(lstName))
+    dispatch(set_FirstName(fstName))
+    dispatch(set_LastName(lstName))
     Cancel_Btn()
   }
 
