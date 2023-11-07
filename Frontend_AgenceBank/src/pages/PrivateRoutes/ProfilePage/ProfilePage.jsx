@@ -2,7 +2,6 @@ import style from './ProfilePage.module.css'
 import { useState } from 'react'
 import CountComponent from './Transactions/Transaction.jsx'
 import TitleForm from './TitleForm/TitleForm.jsx'
-import store from '../../../Redux/store.js'
 
 const accounts = [
   {

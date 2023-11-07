@@ -9,13 +9,13 @@ import { set_FirstName, set_LastName } from "../../../../Redux/UserReducer/UserS
 export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, showTitle, showForm, Edit_Btn, Cancel_Btn, }) {
   const ftName = useSelector(state => state.user.firstName)
   const ltName = useSelector(state => state.user.lastName)
+  const token = useSelector(state => state.login.token)
 
   const [fstName, setfstName] = useState(ftName)
   const [lstName, setlstName] = useState(ltName)
   const dispatch = useDispatch()
-const token = useSelector(state => state.login.token)
+  
   async function handle_NewName(e) {
-
     e.preventDefault()
     
     await put_NewInfos(token, fstName, lstName)

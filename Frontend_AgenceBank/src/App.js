@@ -7,13 +7,13 @@ import ProfilePage from './pages/PrivateRoutes/ProfilePage/ProfilePage.jsx';
 import AccountPage from './pages/PrivateRoutes/AccountPage/AccountPage.jsx';
 import ErrorPage from './pages/ErrorPage/ErrorPage.jsx';
 import PrivateRoutes from './pages/PrivateRoutes/PrivatesRoutes.jsx';
-import { Provider } from 'react-redux';
-import store from './Redux/store'
+
 
 
 function App() {
+
+  
   return (
-  <Provider store={store}>
     <Routes>
     <Route path="/" element={<Layout />} >
       <Route index element={<HomePage />} />
@@ -25,8 +25,6 @@ function App() {
       <Route path="*" element={<ErrorPage />} />
     </Route>
     </Routes>
-    
-  </Provider>
    )
 }
 

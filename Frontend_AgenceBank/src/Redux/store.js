@@ -1,35 +1,29 @@
-import {configureStore} from '@reduxjs/toolkit';
-import userReducer from './UserReducer/UserSlice.js';
-import authReducer from './AuthReducer/AuthSlice.js';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
-import thunk from 'redux-thunk';
-
-const persistUser = {
-  key : "user",
-  storage,
-}
-
-const persistAuth = {
-  key : "login",
-  storage,
-}
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import userSlice from './UserReducer/UserSlice.js';
+import AuthSlice, { set_Login } from './AuthReducer/AuthSlice.js';
+import { set_User } from './UserReducer/UserSlice.js';
 
 
+const rootReducer = combineReducers({
+  user : userSlice,
+  login : AuthSlice,
+})
 
-
-const persistedUserReducer = persistReducer(persistUser, userReducer,)
-const persistedAuthReducer = persistReducer(persistAuth, authReducer)
 
 
 const store = configureStore({
     
-    reducer: {
-     user:persistedUserReducer,
-     login:persistedAuthReducer,
-    },  
-    devTools : process . env . NODE_ENV !== 'production' , middleware : [ thunk ] 
+    reducer: rootReducer,
+    
 });
 
+if (localStorage.getItem("login")) {
+  
+    store.dispatch(set_Login(JSON.parse(localStorage.getItem("login"))))
+    store.dispatch(set_User(JSON.parse(localStorage.getItem("user"))))
+}
+
 export default store;
-export const persistor = persistStore(store)
+
+
+

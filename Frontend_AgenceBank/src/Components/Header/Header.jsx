@@ -7,70 +7,94 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { remove_User } from '../../Redux/UserReducer/UserSlice.js';
+import { remove_Auth } from '../../Redux/AuthReducer/AuthSlice.js';
 
 
 
 export default function Header() {
-  
-  const isConnected = useSelector(state => state.login.token)  
-  console.log('isLogged in header', isConnected)
-
-  const[isLogged , setIsLogged] = useState(isConnected)
-  
-  const firstName = useSelector(state => state.user.firstName)
-  const [fstName, setFstName] = useState(firstName)
-
-  
-    
-
-  useEffect(() => {          
-    
-    setIsLogged(isConnected)
-    setFstName(firstName)
-  }, [firstName, isConnected])
-
 
   const navigate = useNavigate();
-  const HandleLogout = () => {    
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const isAuth = useSelector(state => state.login.authenticated)
+
+  
+  const firstName = useSelector((state) => state.user.firstName)
+  const [fstName, setFstName] = useState(firstName)
+  
+  
+  const [head, setHead] = useState({
+    status:'notAuthenticated',
+    signinBtn: {
+      icon: faUserCircle,
+      text: 'Sign In',
+    },
+    profilBtn: {
+      profileButtonClass: style.hidden,
+      icon: faUserCircle,
+      IconClass: style.hidden,
+    },
+  })
+
+  useEffect(() => {
+    if (isAuth) {
+      setHead({
+        status:'authenticated',
+        signinBtn: {
+          icon: faSignOut,
+          text: 'Sign Out',
+        },
+        profilBtn: {
+          profileButtonClass: style.header_Link,
+          icon: faUserCircle,
+          iconClass: style.visible,
+    }})
+    setFstName(firstName)
+   } else {
+      setHead({
+        status:'notAuthenticated',
+        signinBtn: {
+          icon: faUserCircle,
+          text: 'Sign In',
+        },
+        profilBtn: {
+          profileButtonClass: style.hidden,
+          icon: faUserCircle,
+          iconClass: style.hidden,
+        }
+      })
+    
+  }  
+    
+    
+    
+  }, [firstName, isAuth])
+  
+  const HandleLogout = () => { // Gestion de la suppression de la conneixon
     dispatch(remove_User())
+    dispatch(remove_Auth())    
+    localStorage.clear()
+
     navigate('/login');
   }
 
-if (isLogged) {
   return (
     <header className={style.header}>
       <Link to="/" className={style.header_Logo_Link}>
-      <img src={Logo} alt="Argent Bank Logo" className={style.header_Logo} />
+        <img src={Logo} alt="Argent Bank Logo" className={style.header_Logo} />
       </Link>
 
       <nav className={style.header_Nav}>
-      <Link to="/profile" className={style.header_Link}>
-      <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
-      <p className={style.header_FirstName}>      {fstName}
-</p>
-      </Link>
-      <Link to="/login" className={style.header_Link} onClick={HandleLogout}>
-      <FontAwesomeIcon className={style.header_Login_Icon} icon={faSignOut}/>
-        Sign Out
-      </Link>
+        <Link to="/profile" className={head.profilBtn.profileButtonClass}>
+          <FontAwesomeIcon className={head.profilBtn.iconClass} icon={head.profilBtn.icon} />
+          <p className={style.header_FirstName}>      {fstName}
+          </p>
+        </Link>
+        <Link to="/login" className={style.header_Link} onClick={HandleLogout}>
+          <FontAwesomeIcon className={style.visible} icon={head.signinBtn.icon} />
+          {head.signinBtn.text}
+        </Link>
       </nav>
     </header>
   )
-  } else {
-  return (
-    <header className={style.header}>
-      <Link to="/" className={style.header_Logo_Link}>
-      <img src={Logo} alt="Argent Bank Logo" className={style.header_Logo} />
-      <h1 className={style.sr_only}>Accounts</h1>
-      </Link>
-
-      <Link to="/login" className={style.header_Link}>
-      <FontAwesomeIcon className={style.header_Login_Icon} icon={faUserCircle}/>
-      Sign in
-      </Link>
-      
-    </header>
-  )
-}
 }

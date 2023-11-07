@@ -5,10 +5,10 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetch_UserInfos } from "../../Services/login.service.js";
-import { set_Token, set_IsAuth, set_KeepLogging } from "../../Redux/AuthReducer/AuthSlice.js";
+import { set_Login } from "../../Redux/AuthReducer/AuthSlice.js";
 import { set_User } from "../../Redux/UserReducer/UserSlice.js";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 
@@ -31,44 +31,45 @@ function Forgot({ show }) {
  */
 
 export default function LoginPage() {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [remember, setRemember] = useState(false);
   const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleCheck = () => {
-    //Fonction qui permet de cocher la case "Remember me" si l'utilisateur a déjà coché cette case
+
+
+  const handleCheck = () => {    //Fonction qui permet de cocher la case "Remember me" si l'utilisateur a déjà coché cette case
+
     const check = document.getElementById("remember");
     if (check.checked) {
-      console.log("checked");
       setRemember(true);
-    } 
-    
+    }
   };
-  const handle_Form = async (e) => {
+  const handle_Form = async (e) => { // Fonction qui permet de gérer le formulaire de connexion
     e.preventDefault();
-if (remember) {
-        dispatch(set_KeepLogging(true));
-      }
-    const token = await fetch_Token(password, email);
-    console.log(token);      
-    dispatch(set_IsAuth(true));
 
-    //Récupérer le token et l'intégrer au store 
-    dispatch(set_Token(token));
-    
-    if (password === '' || email === '' || token === null) {
+    const token = await fetch_Token(password, email);
+
+    if (password === '' || email === '' || !token) { //Si les identifiants sont invalides, afficher le message d'erreur
       setShow(true);
       setTimeout(() => {
         setShow(false);
       }, 3000);
-    } else {
+    } else {//Si les identifiants sont valides, enregistrer L'authentification dans le store et dans le local storage
+      
+      dispatch(set_Login({token: token, keepLogging: remember, authenticated: true}));
+
       const infos = await fetch_UserInfos(token);
-      console.log(infos);
+      const user = {
+        "firstName": infos.firstName,
+        "lastName": infos.lastName,
+        "id": infos.id,
+      };
       //Récupérer les infos de l'utilisateur et les intégrer au store //////////////////////////////
-      dispatch(set_User({firstName:infos.firstName,lastName:infos.lastName,email:email,password:password,id:infos.id}));
+      dispatch(set_User(user));
       navigate("/profile");
     }
     return;
