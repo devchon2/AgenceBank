@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
 const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -34,7 +33,6 @@ const userSlice = createSlice({
             state.firstName = null; 
             state.lastName =  null;
             state.id = null;
-            localStorage.setItem('user', JSON.stringify({firstName:null,lastName:null,id:null}));
         },
     },
 })

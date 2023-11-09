@@ -7,15 +7,6 @@ import { Outlet } from "react-router-dom"
 
 export default function Layout() {
 
-    // Restore authentication state from localStorage on app initialization
-  
-  if (localStorage.getItem('login')) { 
-    set_Login(JSON.parse(localStorage.getItem('login')));
-    set_User(JSON.parse(localStorage.getItem('user')));
-   } else {
-    console.log('no login found')
-  }
-
 
 
 return (
