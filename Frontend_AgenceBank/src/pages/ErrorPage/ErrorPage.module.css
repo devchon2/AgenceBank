@@ -1,47 +1,49 @@
-.errorPage{
+/* CSS styles for the ErrorPage component */
+
+/* Styles for the outer container of the ErrorPage */
+.errorPage {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.errorPageContainer{
+/* Styles for the inner container of the ErrorPage */
+.errorPageContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;  
+  flex-grow: 1;
   margin-bottom: 10rem;
 }
 
-.errorTitle{
-  
+/* Styles for the error title */
+.errorTitle {
   font-size: 5rem;
   margin-bottom: 1rem;
   text-align: center;
-  text-shadow : 2px 2px 4px #CCCCCC;
+  text-shadow: 2px 2px 4px #CCCCCC;
 }
 
-.letter:nth-child(1){
+/* Styles for individual letters in the error title */
+.letter:nth-child(1) {
   color: #c3ecd9;
 }
 
-.letter:nth-child(2){
+.letter:nth-child(2) {
   color: #35c58a;
 }
 
-.letter:nth-child(3){
+.letter:nth-child(3) {
   color: #005834;
 }
 
-.errorMessage{
+/* Styles for the error message */
+.errorMessage {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  text-shadow : 2px 2px 2px #CCCCCC;
+  text-shadow: 2px 2px 2px #CCCCCC;
   text-align: center;
-  
   font-weight: 550;
-  text-align: center;
-
-  
 }

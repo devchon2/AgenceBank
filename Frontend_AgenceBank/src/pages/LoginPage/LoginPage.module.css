@@ -1,98 +1,108 @@
-.loginPage{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  height:100%;
-  width:100%;
-  width:100%;
-
+/* Styling for the login page container */
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
-.hidden{
-  display:none;
+/* CSS classes for hiding and showing elements */
+.hidden {
+  display: none;
 }
 
-.visible{
-  display:block;
+.visible {
+  display: block;
 }
 
+/* Styling for the background of the login page */
 .bg_dark {
   display: block;
   background-color: #12002b;
   flex-grow: 1;
 }
 
-.forgot{
-  padding-top:10px;
-  font-size:1.2vh;
-  color:red;
+/* Styling for the error message when credentials are invalid */
+.forgot {
+  padding-top: 10px;
+  font-size: 1.2vh;
+  color: red;
   text-align: end;
 }
 
-
+/* Styling for the sign-in container */
 .signIn_Container {
-    background-color: white;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    padding: 2rem;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
 }
 
-.title_Login_Icon{
+/* Styling for the user icon */
+.title_Login_Icon {
   display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
-.title{
+/* Styling for the page title */
+.title {
   font-size: 1.5em;
   -webkit-margin-before: 0.83em;
-          margin-block-start: 0.83em;
+  margin-block-start: 0.83em;
   -webkit-margin-after: 0.83em;
-          margin-block-end: 0.83em;
+  margin-block-end: 0.83em;
 }
 
-form{
+/* Styling for the form */
+form {
   display: block;
   margin-top: 0em;
 }
 
-.input_Container{
+/* Styling for input container */
+.input_Container {
   display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 1rem;
-  
-
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
 }
 
-.label{
-  font-weight: bold
+/* Styling for input label */
+.label {
+  font-weight: bold;
 }
 
-.input_Check_Container{
-  display:flex;
+/* Styling for checkbox container */
+.input_Check_Container {
+  display: flex;
 }
 
-.input{
+/* Styling for input elements */
+.input {
   padding: 5px;
   margin-bottom: 22px;
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
-.label_Check{
+/* Styling for the "Remember me" label */
+.label_Check {
   font-weight: normal;
-  margin-margin-left:0.25rem;
+  margin-margin-left: 0.25rem; /* Should be "margin-left" instead of "margin-margin-left" */
 }
 
-.input_Check{
-  margin:3px 10px 3px 4px;
+/* Styling for the "Remember me" checkbox */
+.input_Check {
+  margin: 3px 10px 3px 4px;
 }
 
-.button{
+/* Styling for the sign-in button */
+.button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -101,6 +111,6 @@ form{
   margin-top: 1rem;
   background-color: #00bc77;
   color: #fff;
-  border:none;
-  text-decoration:underline;
+  border: none;
+  text-decoration: underline;
 }

@@ -1,4 +1,7 @@
-.feature_item{
+/* CSS styles for the HomeFeature component */
+
+/* Styles for the feature item container */
+.feature_item {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -7,6 +10,7 @@
   padding: 2.5rem;
 }
 
+/* Styles for the feature icon */
 .feature_icon {
   width: 150px;
   border: 10px solid #00bc77;
@@ -15,6 +19,7 @@
   margin-bottom: 2rem;
 }
 
+/* Styles for the feature title */
 .feature_title {
   color: rgb(34, 34, 34);
   font-size: 1.25rem;
@@ -22,12 +27,11 @@
   margin-bottom: 0.5rem;
 }
 
+/* Styles for the feature subtitle */
 .feature_subtitle {
   color: #2c3e50;
   font-weight: 500;
   font-size: 1rem;
   text-align: center;
-
   line-height: 1.5;
 }
-
