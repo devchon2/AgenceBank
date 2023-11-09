@@ -9,16 +9,16 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /user/login:
+  /users/login:
     post:
       tags:
         - User Module
       summary: Login
-      description: API for Login
+      description: API endpoint for user login.
       parameters:
         - in: body
           name: body
-          description: Login Payload
+          description: Payload containing email and password for login.
           required: true
           schema:
             $ref: '#/definitions/Login'
@@ -26,23 +26,24 @@ paths:
         - application/json
       responses:
         '200':
-          description: Login Successfully
+          description: Login successful.
           schema:
             $ref: '#/definitions/LoginResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid email or password provided.
         '500':
-          description: Internal Server Error
-  /user/signup:
+          description: Internal server error occurred.
+
+  /users/signup:
     post:
       tags:
         - User Module
       summary: Signup
-      description: API for Signup
+      description: API endpoint for user registration.
       parameters:
         - in: body
           name: body
-          description: Signup Payload
+          description: Payload containing user registration details.
           required: true
           schema:
             $ref: '#/definitions/User'
@@ -50,151 +51,166 @@ paths:
         - application/json
       responses:
         '200':
-          description: Signup Successfully
+          description: Signup successful.
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid or missing fields.
         '500':
-          description: Internal Server Error
-  /user/profile:
-    post:
+          description: Internal server error occurred.
+
+  /users/profile:
+    get:
       security:
         - Bearer: []
       tags:
         - User Module
-      summary: User Profile API
-      description: API for fetching a user profile
+      summary: User Profile
+      description: Retrieve the profile of the authenticated user.
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Bearer token for authentication.
           required: true
       produces:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: Profile retrieval successful.
           schema:
             $ref: '#/definitions/UserProfile'
         '400':
-          description: Invalid Fields
+          description: Invalid request parameters.
+        '401':
+          description: Unauthorized access.
         '500':
-          description: Internal Server Error
+          description: Internal server error occurred.
+
     put:
       security:
         - Bearer: []
       tags:
         - User Module
-      summary: User Profile API
-      description: API for updating a user profile
+      summary: Update Profile
+      description: Update the authenticated user's profile information.
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Bearer token for authentication.
           required: true
         - in: body
           name: body
-          description: Update user profile attributes
+          description: Payload containing profile update information.
           required: true
           schema:
-            $ref: '#/definitions/UserProfile'
+            $ref: '#/definitions/UpdateUserProfile'
       produces:
         - application/json
       responses:
         '200':
-          description: User profile updated successully
+          description: Profile update successful.
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid or missing fields.
+        '401':
+          description: Unauthorized access.
         '500':
-          description: Internal Server Error
-  /user/accounts:
+          description: Internal server error occurred.
+
+  /users/accounts:
     get:
       security:
         - Bearer: []
+      tags:
+        - Account Module
+      summary: Retrieve Accounts
+      description: Fetch all bank accounts associated with the authenticated user.
       parameters:
         - in: header
           name: Authorization
+          type: bearer
+          description: Bearer token for authentication.
+          required: true
+        - in: query
+          name: userId
           type: string
+          
           required: true
-        - in: body
-          name: body
-          type: object
-          schema: 
-            $ref: '#/definitions/Accounts'
-          required: true
-      tags:
-        - Account Module
-      summary: Retrieve user accounts
-      description: Fetch all accounts for the authenticated user
+          description:  date for query transaction history retrieval.
       produces:
         - application/json
       responses:
         '200':
-          description: User accounts retrieved successfully
+          description: Accounts retrieved successfully.
           schema:
             type: array
             items:
               $ref: '#/definitions/UserAccount'
         '400':
-          description: Invalid request
+          description: Invalid request parameters.
         '401':
-          description: Unauthorized
+          description: Unauthorized access.
         '500':
-          description: Internal Server Error
-  /user/accounts/transactions: 
+          description: Internal server error occurred.
+
+  /users/accounts/transactions:
     get:
       security:
         - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Retrieve Transactions
+      description: Fetch transaction history for the authenticated user within a specified date range.
       parameters:
         - in: header
           name: Authorization
-          type: string
+          type: bearer
+          description: Bearer token for authentication.
           required: true
-      tags:
-        - Transaction Module
-      summary: Retrieve user transactions for the last month
-      description: Fetch all transactions from the last month for the authenticated user
+        - in: query
+          name: accountId
+          type:  string
+          required: true
+          description: Account Id
+        - in: query
+          name: Date
+          type: string
+          format: date
+          required: false
+          description:  date for query transaction history retrieval.
       produces:
         - application/json
-      requestBody:
-        description: Transaction data
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/TransactionsList'
       responses:
         '200':
-          description: User transactions retrieved successfully
+          description: Transactions retrieved successfully.
           schema:
             type: array
             items:
               $ref: '#/definitions/UserTransaction'
         '400':
-          description: Invalid request
+          description: Invalid request parameters.
         '401':
-          description: Unauthorized
+          description: Unauthorized access.
         '500':
-          description: Internal Server Error
+          description: Internal server error occurred.
+
     put:
       security:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: Update transaction category and note
-      description: Update category and add a note for a specific transaction
+      summary: Update Transaction
+      description: Update details for a specific transaction.
       parameters:
         - in: header
           name: Authorization
-          description: Bearer JWT token
+          type: bearer
+          description: Bearer token for authentication.
           required: true
-        
         - in: body
           name: body
-          description: Update transaction attributes
+          description: Payload containing updated transaction details.
           required: true
           schema:
             $ref: '#/definitions/TransactionUpdate'
@@ -202,15 +218,15 @@ paths:
         - application/json
       responses:
         '200':
-          description: Transaction updated successfully
+          description: Transaction update successful.
           schema:
-            $ref: '#/definitions/TransactionResponse'
+              $ref: '#/definitions/TransactionResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid or missing fields.
         '401':
-          description: Unauthorized
+          description: Unauthorized access.
         '500':
-          description: Internal Server Error
+          description: Internal server error occurred.
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -316,7 +332,6 @@ definitions:
             type: string
           email:
             type: string
-  
   UserProfile:
     type: object
     properties:
@@ -333,6 +348,14 @@ definitions:
             type: string
           id:
             type: string
+  UpdateUserProfile:
+    
+    type: object
+    properties: 
+      firstName:
+        type: string
+      lastName:
+        type: string   
   Accounts:
     type: object
     properties:
@@ -346,9 +369,9 @@ definitions:
     type: object
     properties:
       transactionId:
-        type:string
+        type: string
   TransactionsList:
     
     properties:
       transactionId:
-        type:string
+        type: string
