@@ -3,7 +3,7 @@ info:
   title: Bank Argent API documentation
   description: Contains all available API endpoints in this codebase
   version: 1.0.0
-  termsOfService: 'http://swagger.io/terms/'
+  termsOfService: 'http://swagger.io/terms/' # Replace with actual URL if available
 host: localhost:3001
 basePath: /api/v1
 schemes:
@@ -338,9 +338,17 @@ definitions:
     properties:
       userId:
         type: string
+      date:
+        type: string
+        format: date
+        description: day date 
   Transactions:
     type: object
     properties:
       transactionId:
         type:string
   TransactionsList:
+    
+    properties:
+      transactionId:
+        type:string
