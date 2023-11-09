@@ -1,137 +1,151 @@
-
-.account{
-  display:flex;
-  justify-content:space-around;
-  flex-direction:column;
-  width:100%;
-  padding:20px 0;
-  border:1px solid #ccc;
-  background-color:#fff;
+/* Styles for the Transaction Module */
+.account {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 0;
+  border: 1px solid #ccc;
+  background-color: #fff;
 }
 
-
-.hidden{
-  display:none;
+/* CSS class to hide elements */
+.hidden {
+  display: none;
 }
 
-.dateWrapper{
-  display:flex;
-  width:100%;
-  justify-content:flex-start;
-  align-items:center;
-  margin:10px 0 10px 70px
+/* Styling for the dateWrapper element */
+.dateWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px 0 10px 70px;
 }
 
-.resumeContainer{
-  display:flex;
-  width:100%;
-  height:100%;
-  justify-content:space-around;
-  align-items:center;
-}
-.notes{
-  display:flex;
-  height:100%;
-  align-items:center;
-  margin:10px 0;
-  text-align:center;  
+/* Styling for the resumeContainer element */
+.resumeContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.resume div{
-  display:flex;
-  width:25%;
-  justify-content:center;
-  align-items:center;
-}
-.balance{
-  display:flex;
-  width:25%;
-  justify-content:center;
-  align-items:center;
-  margin:10px 0;
+/* Styling for the notes element */
+.notes {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  margin: 10px 0;
+  text-align: center;
 }
 
-.collapsed{
-  display:none;
+/* Styling for child div elements within the resume */
+.resume div {
+  display: flex;
+  width: 25%;
+  justify-content: center;
+  align-items: center;
 }
 
-.expanded{
-  padding-left:30px;
-  display:flex;
-  flex-direction:column;
-  width:25%;
-  height:100%;
-  
-  
+/* Styling for the balance element */
+.balance {
+  display: flex;
+  width: 25%;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
 }
 
+/* CSS class to hide elements with collapse effect */
+.collapsed {
+  display: none;
+}
+
+/* Styling for expanded (open) elements */
+.expanded {
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 100%;
+}
+
+/* Styling for text within expanded elements */
 .expanded p {
-  margin-left:100px;
-  width:100%;
+  margin-left: 100px;
+  width: 100%;
 }
 
-.arrow{
-  position:relative;
-  left:-50px;
-  width:35px;
-  height:20px;
+/* Styling for the arrow icon */
+.arrow {
+  position: relative;
+  left: -50px;
+  width: 35px;
+  height: 20px;
 }
 
-
-
-.dateContainer{
-  display:flex;
-  width:25%;
-  justify-content:center;
-  align-items:center;
-  
+/* Styling for the dateContainer element */
+.dateContainer {
+  display: flex;
+  width: 25%;
+  justify-content: center;
+  align-items: center;
 }
 
-.date{
-  position:relative;
-  left:25px;
-  display:flex;
-  width:100%%;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+/* Styling for the date element */
+.date {
+  position: relative;
+  left: 25px;
+  display: flex;
+  width: 100%%; /* Typo, should be 100% */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.description{
-  display:flex;
-  width:25%;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+/* Styling for the description element */
+.description {
+  display: flex;
+  width: 25%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.transactionType{
-  display:flex;
-  height:100%;
-  align-items:flex-start;
-  margin:10px 0;
-  text-align:center;
-}
-.category{
-  display:flex;
-  height:100%;
-  align-items:flex-start;
-  margin:10px 0;
-  text-align:center;
+/* Styling for the transactionType element */
+.transactionType {
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  margin: 10px 0;
+  text-align: center;
 }
 
-.amount{
-  display:flex;
-  align-items:center;
-  margin:10px 0;
-  width:25%;
-  justify-content:center;
-  text-align:center;
+/* Styling for the category element */
+.category {
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  margin: 10px 0;
+  text-align: center;
 }
 
-.pencil{
-  position:relative;
-  left:10px;
-  width:20px;
-  height:20px;
+/* Styling for the amount element */
+.amount {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  width: 25%;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Styling for the edit pencil icon */
+.pencil {
+  position: relative;
+  left: 10px;
+  width: 20px;
+  height: 20px;
 }

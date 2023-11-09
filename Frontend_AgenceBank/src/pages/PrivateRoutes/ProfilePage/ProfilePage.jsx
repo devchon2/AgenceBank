@@ -1,8 +1,9 @@
-import style from './ProfilePage.module.css'
-import { useState } from 'react'
-import CountComponent from './Transactions/Transaction.jsx'
-import TitleForm from './TitleForm/TitleForm.jsx'
+import style from './ProfilePage.module.css';
+import { useState } from 'react';
+import CountComponent from './Transactions/Transaction.jsx';
+import TitleForm from './TitleForm/TitleForm.jsx';
 
+// Sample account data
 const accounts = [
   {
     id: 1,
@@ -22,47 +23,59 @@ const accounts = [
     amount: '184.30',
     balanceType: 'Current Balance',
   },
-]
+];
 
 export default function UserPage() {
-  
-  const [showSaveBtn, setShowSaveBtn] = useState('hidden')
-  const [showCancelBtn, setShowCancelBtn] = useState('hidden')
-  const [showEditBtn, setShowEditBtn] = useState('visible')
-  const [showTitle, setShowTitle] = useState('visible')
-  const [showForm, setShowForm] = useState('hidden')
+  // State variables to control the visibility of buttons and forms
+  const [showSaveBtn, setShowSaveBtn] = useState('hidden');
+  const [showCancelBtn, setShowCancelBtn] = useState('hidden');
+  const [showEditBtn, setShowEditBtn] = useState('visible');
+  const [showTitle, setShowTitle] = useState('visible');
+  const [showForm, setShowForm] = useState('hidden');
 
-
+  // Function to handle the "Edit" button click
   function handle_Edit_Btn() {
-    setShowSaveBtn('visible')
-    setShowCancelBtn('visible')
-    setShowEditBtn('hidden')
-    setShowTitle('hidden')
-    setShowForm('visible')
+    setShowSaveBtn('visible');
+    setShowCancelBtn('visible');
+    setShowEditBtn('hidden');
+    setShowTitle('hidden');
+    setShowForm('visible');
   }
 
+  // Function to handle the "Cancel" button click
   function handle_Cancel_Btn() {
-    setShowSaveBtn('hidden')
-    setShowCancelBtn('hidden')
-    setShowEditBtn('visible')
-    setShowTitle('visible')
-    setShowForm('hidden')
+    setShowSaveBtn('hidden');
+    setShowCancelBtn('hidden');
+    setShowEditBtn('visible');
+    setShowTitle('visible');
+    setShowForm('hidden');
   }
-
-  
 
   return (
     <main className={style.bg_dark}>
       <div className={style.hero}>
-        <TitleForm showSaveBtn={showSaveBtn} showCancelBtn={showCancelBtn} showEditBtn={showEditBtn} showTitle={showTitle} showForm={showForm}  Edit_Btn={handle_Edit_Btn} Cancel_Btn={handle_Cancel_Btn}   />
-
+        {/* Render the TitleForm component with conditional visibility */}
+        <TitleForm
+          showSaveBtn={showSaveBtn}
+          showCancelBtn={showCancelBtn}
+          showEditBtn={showEditBtn}
+          showTitle={showTitle}
+          showForm={showForm}
+          Edit_Btn={handle_Edit_Btn}
+          Cancel_Btn={handle_Cancel_Btn}
+        />
       </div>
 
-
+      {/* Map through the account data and render CountComponent for each account */}
       {accounts.map((account) => (
-        <CountComponent key={account.id} id={account.id} count={account.amount} title={account.title} balanceType={account.balanceType} />
+        <CountComponent
+          key={account.id}
+          id={account.id}
+          count={account.amount}
+          title={account.title}
+          balanceType={account.balanceType}
+        />
       ))}
-
     </main>
-  )
+  );
 }

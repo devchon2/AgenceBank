@@ -1,6 +1,8 @@
 import style from './AccountPage.module.css'
 import TransactionModule from './TransactionCount/TransactionModule'
 
+// Sample data for transactions
+
 const Datas = [
   { date: 'June 20th, 2020',
   description: 'Golden Sun Bakery',
@@ -71,20 +73,28 @@ export default function ProfilePage() {
       </section>
       <section className={style.transactionSection}>
         <div className={style.header}>
-
+          {/* Transaction table headers */}
           <h2 className={style.headerTransaction}>Date</h2>
           <h2 className={style.headerTransaction}>Description</h2>
           <h2 className={style.headerTransaction}>Amount</h2>
           <h2 className={style.headerTransaction}>Balance</h2>
         </div>
-      {Datas.map((obj) =>{
-        
-        return (<TransactionModule key={obj.id} id={obj.id} date={obj.date} description={obj.description} amount={obj.amount} balance={obj.balance} category={obj.category} transactionType={obj.transactionType} />)
-})}
-      
-      
+        {/* Mapping through the transaction data and rendering TransactionModule components */}
+        {Datas.map((obj) => {
+          return (
+            <TransactionModule
+              key={obj.id}
+              id={obj.id}
+              date={obj.date}
+              description={obj.description}
+              amount={obj.amount}
+              balance={obj.balance}
+              category={obj.category}
+              transactionType={obj.transactionType}
+            />
+          );
+        })}
       </section>
     </main>
-  )
+  );
 }
-        

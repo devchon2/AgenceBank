@@ -45,29 +45,43 @@ export default function TransactionModule({
   const element = document.querySelector(`.${style.account}`);
 
   return (
+    // Transaction module section with a click event handler to toggle collapse/expand
     <section className={style.account} onClick={handleCollapse}>
       <div className={style.resumeContainer}>
         <div className={style.dateContainer}>
           <div className={style.dateWrapper}>
-          <FontAwesomeIcon icon={icon} className={clsName}
-            
-          />
-          <p className={style.date}>{date}</p>
+            {/* Arrow icon for collapse/expand */}
+            <FontAwesomeIcon icon={icon} className={clsName} />
+            {/* Transaction date */}
+            <p className={style.date}>{date}</p>
           </div>
         </div>
+        {/* Transaction description */}
         <div className={style.description}>{description}</div>
+        {/* Transaction amount */}
         <div className={style.amount}>$ {amount}</div>
+        {/* Transaction balance */}
         <div className={style.balance}>$ {balance}</div>
       </div>
       <div className={collapsed}>
-        <p className={style.transactionType}>Transaction Type:{transactionType}</p>
-        <p className={style.category}>Category:{category}<span className={style.pencil} >
-          <FontAwesomeIcon icon={faPencil}  />
+        {/* Transaction Type */}
+        <p className={style.transactionType}>Transaction Type: {transactionType}</p>
+        {/* Transaction Category with an edit pencil icon */}
+        <p className={style.category}>
+          Category: {category}
+          <span className={style.pencil}>
+            <FontAwesomeIcon icon={faPencil} />
           </span>
         </p>
-        <p className={style.notes}> Notes:{notes} <span className={style.pencil}><FontAwesomeIcon icon={faPencil}  />
-</span> </p>
+        {/* Transaction Notes with an edit pencil icon */}
+        <p className={style.notes}>
+          Notes: {notes}
+          <span className={style.pencil}>
+            <FontAwesomeIcon icon={faPencil} />
+          </span>
+        </p>
       </div>
     </section>
   );
+
 }
