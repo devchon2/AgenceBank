@@ -1,9 +1,9 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Bank Argent API documentation
   description: Contains all available API endpoints in this codebase
   version: 1.0.0
-  termsOfService: 'http://swagger.io/terms/' # Replace with actual URL if available
+  termsOfService: "http://swagger.io/terms/" 
 host: localhost:3001
 basePath: /api/v1
 schemes:
@@ -21,17 +21,17 @@ paths:
           description: Payload containing email and password for login.
           required: true
           schema:
-            $ref: '#/definitions/Login'
+            $ref: "#/definitions/Login"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Login successful.
           schema:
-            $ref: '#/definitions/LoginResponse'
-        '400':
+            $ref: "#/definitions/LoginResponse"
+        "400":
           description: Invalid email or password provided.
-        '500':
+        "500":
           description: Internal server error occurred.
 
   /users/signup:
@@ -46,17 +46,17 @@ paths:
           description: Payload containing user registration details.
           required: true
           schema:
-            $ref: '#/definitions/User'
+            $ref: "#/definitions/User"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Signup successful.
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
+            $ref: "#/definitions/ApiResponse"
+        "400":
           description: Invalid or missing fields.
-        '500':
+        "500":
           description: Internal server error occurred.
 
   /users/profile:
@@ -70,20 +70,21 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: Bearer token for authentication.
           required: true
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Profile retrieval successful.
           schema:
-            $ref: '#/definitions/UserProfile'
-        '400':
+            $ref: "#/definitions/UserProfile"
+        "400":
           description: Invalid request parameters.
-        '401':
+        "401":
           description: Unauthorized access.
-        '500':
+        "500":
           description: Internal server error occurred.
 
     put:
@@ -97,25 +98,26 @@ paths:
         - in: header
           name: Authorization
           description: Bearer token for authentication.
+          type: string
           required: true
         - in: body
           name: body
           description: Payload containing profile update information.
           required: true
           schema:
-            $ref: '#/definitions/UpdateUserProfile'
+            $ref: "#/definitions/UpdateUserProfile"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Profile update successful.
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
+            $ref: "#/definitions/ApiResponse"
+        "400":
           description: Invalid or missing fields.
-        '401':
+        "401":
           description: Unauthorized access.
-        '500':
+        "500":
           description: Internal server error occurred.
 
   /users/accounts:
@@ -129,29 +131,29 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          type: bearer
+          type: string
           description: Bearer token for authentication.
           required: true
         - in: query
           name: userId
           type: string
-          
+
           required: true
-          description:  date for query transaction history retrieval.
+          description: date for query transaction history retrieval.
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Accounts retrieved successfully.
           schema:
             type: array
             items:
-              $ref: '#/definitions/UserAccount'
-        '400':
+              $ref: "#/definitions/UserAccount"
+        "400":
           description: Invalid request parameters.
-        '401':
+        "401":
           description: Unauthorized access.
-        '500':
+        "500":
           description: Internal server error occurred.
 
   /users/accounts/transactions:
@@ -165,12 +167,12 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          type: bearer
+          type: string
           description: Bearer token for authentication.
           required: true
         - in: query
           name: accountId
-          type:  string
+          type: string
           required: true
           description: Account Id
         - in: query
@@ -178,21 +180,21 @@ paths:
           type: string
           format: date
           required: false
-          description:  date for query transaction history retrieval.
+          description: date for query transaction history retrieval.
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Transactions retrieved successfully.
           schema:
             type: array
             items:
-              $ref: '#/definitions/UserTransaction'
-        '400':
+              $ref: "#/definitions/UserTransaction"
+        "400":
           description: Invalid request parameters.
-        '401':
+        "401":
           description: Unauthorized access.
-        '500':
+        "500":
           description: Internal server error occurred.
 
     put:
@@ -205,27 +207,26 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          type: bearer
+          type: string
           description: Bearer token for authentication.
           required: true
         - in: body
           name: body
           description: Payload containing updated transaction details.
-          required: true
           schema:
-            $ref: '#/definitions/TransactionUpdate'
+            $ref: "#/definitions/TransactionUpdate"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Transaction update successful.
           schema:
-              $ref: '#/definitions/TransactionResponse'
-        '400':
+            $ref: "#/definitions/TransactionResponse"
+        "400":
           description: Invalid or missing fields.
-        '401':
+        "401":
           description: Unauthorized access.
-        '500':
+        "500":
           description: Internal server error occurred.
 securityDefinitions:
   Bearer:
@@ -257,6 +258,8 @@ definitions:
         type: string
         description: Any additional notes or comments about the transaction.
   TransactionUpdate:
+    required:
+      - transactionId
     type: object
     properties:
       category:
@@ -267,7 +270,7 @@ definitions:
         description: Updated note or comment for the transaction.
       transactionId:
         type: string
-        required: true
+
         description: Transaction Id
   TransactionResponse:
     type: object
@@ -276,7 +279,7 @@ definitions:
         type: string
         description: Message indicating the result of the transaction update.
       updatedTransaction:
-        $ref: '#/definitions/UserTransaction'
+        $ref: "#/definitions/UserTransaction"
         description: Details of the updated transaction.
   UserAccount:
     type: object
@@ -349,13 +352,12 @@ definitions:
           id:
             type: string
   UpdateUserProfile:
-    
     type: object
-    properties: 
+    properties:
       firstName:
         type: string
       lastName:
-        type: string   
+        type: string
   Accounts:
     type: object
     properties:
@@ -364,14 +366,13 @@ definitions:
       date:
         type: string
         format: date
-        description: day date 
+        description: day date
   Transactions:
     type: object
     properties:
       transactionId:
         type: string
   TransactionsList:
-    
     properties:
       transactionId:
         type: string
