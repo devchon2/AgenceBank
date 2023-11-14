@@ -84,6 +84,8 @@ paths:
           description: Invalid request parameters.
         "401":
           description: Unauthorized access.
+        "403":
+          description: Forbidden access
         "500":
           description: Internal server error occurred.
 
@@ -117,6 +119,8 @@ paths:
           description: Invalid or missing fields.
         "401":
           description: Unauthorized access.
+        "403":
+          description: Forbidden access
         "500":
           description: Internal server error occurred.
 
@@ -153,6 +157,8 @@ paths:
           description: Invalid request parameters.
         "401":
           description: Unauthorized access.
+        "403":
+          description: Forbidden access
         "500":
           description: Internal server error occurred.
 
@@ -194,6 +200,8 @@ paths:
           description: Invalid request parameters.
         "401":
           description: Unauthorized access.
+        "403":
+          description: Forbidden access
         "500":
           description: Internal server error occurred.
 
@@ -226,6 +234,8 @@ paths:
           description: Invalid or missing fields.
         "401":
           description: Unauthorized access.
+        "403":
+          description: Forbidden access
         "500":
           description: Internal server error occurred.
 securityDefinitions:
