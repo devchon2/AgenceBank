@@ -50,7 +50,7 @@ async function fetch_UserInfos(token) {
 }
 
 // Function to update a user's first name and last name using their token
-async function put_NewInfos(token, firstName, lastName) {
+async function put_NewInfos(token,firstName,lastName) {
   await Axios.request({
     method: 'put',
     url: 'http://localhost:3001/api/v1/user/profile',
@@ -59,8 +59,8 @@ async function put_NewInfos(token, firstName, lastName) {
       'Authorization': `Bearer ${token}`
     },
     data: {
-      firstName: firstName,
-      lastName: lastName
+      firstName:firstName,
+      lastName:lastName
     }
   });
 

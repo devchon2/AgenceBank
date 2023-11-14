@@ -11,8 +11,8 @@ export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, sho
   const token = useSelector(state => state.login.token)
 
   // Define state variables for first name and last name
-  const [fstName, setfstName] = useState(ftName)
-  const [lstName, setlstName] = useState(ltName)
+  const [fstName, setFstName] = useState(ftName)
+  const [lstName, setLstName] = useState(ltName)
   const dispatch = useDispatch()
   
   // Function to handle updating the user's name
@@ -32,8 +32,8 @@ export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, sho
 
   // Update state when user data changes
   useEffect(() => {
-    setfstName(ftName)
-    setlstName(ltName)
+    setFstName(ftName)
+    setLstName(ltName)
   }, [ftName, ltName])
 
   // Determine CSS classes for various elements based on their visibility
@@ -63,14 +63,23 @@ export default function TitleForm({ showSaveBtn, showCancelBtn, showEditBtn, sho
               id="firstName"
               placeholder={fstName}
               className={style.userTitleInput}
-              onChange={(e) => setfstName(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value.trim() !== '') {
+                  setFstName(e.target.value)
+                  }
+                }}
+                
             />
             <input
               type="text"
               id="lastName"
               placeholder={lstName}
               className={style.userTitleInput}
-              onChange={(e) => setlstName(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value.trim() !== '') {
+                  setLstName(e.target.value)
+                  }
+                }}
             />
           </div>
           {/* Buttons for Save and Cancel */}
