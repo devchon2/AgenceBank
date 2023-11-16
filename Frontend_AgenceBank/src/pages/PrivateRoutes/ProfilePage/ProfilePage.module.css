@@ -1,0 +1,96 @@
+/* Styling for the main container */
+.bg_dark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #12002b;
+  flex: 1;
+}
+
+/* Styling for the hero section */
+.hero {
+  color: white;
+  margin-bottom: 2rem;
+  height: 200px;
+}
+
+/* Styling for the title within the hero section */
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: 2em;
+  margin: 30px auto;
+  font-weight: bold;
+}
+
+/* Styling for the edit button container */
+.editBtnContainer {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for the common button styles */
+.button {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* Styling for user title name section */
+.userTitleName {
+  flex-direction: column;
+}
+
+/* Styling for user title form section */
+.userTitleForm {
+  flex-direction: column;
+}
+
+/* Styling for user title input container */
+.userTitleInputContainer {
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Styling for user title button container */
+.userTitleButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Styling for user title input */
+.userTitleInput {
+  width: 150px;
+  padding: 0.5rem;
+  margin: 0 1rem;
+  border: 2px solid #aeaff0;
+  outline: none;
+}
+
+/* Styling for user title input placeholder text */
+.userTitleInput::-webkit-input-placeholder {
+  color: #46296f;
+  font-weight: bold;
+}
+
+/* Styling for user title button */
+.userTitleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  padding: 0.5rem 2rem;
+  margin: 0 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
