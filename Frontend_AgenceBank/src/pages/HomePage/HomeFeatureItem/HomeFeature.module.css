@@ -8,7 +8,6 @@
   align-items: center;
   width: 100%;
   padding: 2.5rem;
-  box-shadow: 10px 15px 10px 1px rgba(0, 0, 0, 0.35);
 }
 
 /* Styles for the feature icon */
@@ -50,6 +49,8 @@
     width: 60vw;
     border: 15px solid #00bc77;
     border-radius: 50%;
+    box-shadow: 10px 15px 10px 1px rgba(0, 0, 0, 0.35);
+
   }
 
   .feature_icon {
@@ -65,7 +66,7 @@
     text-align: center;
     position: relative;
     top: -30px;
-    font-size: 80%;
+    font-size: 73%;
 
     width: 100%;
     background-color: transparent;
