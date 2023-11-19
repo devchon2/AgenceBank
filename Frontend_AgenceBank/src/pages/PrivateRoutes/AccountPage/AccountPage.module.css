@@ -76,3 +76,14 @@
   align-items: center;
   width: 25%;
 }
+
+@media (max-width:767px) {
+  .transactionSection {
+    width: 100%;
+  }
+
+  .header {
+    font-size: 40%;
+    font-weight: 500;
+  }
+}

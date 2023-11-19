@@ -141,9 +141,9 @@ paths:
         - in: query
           name: userId
           type: string
-
+          description: UserId to querie  User's accounts
           required: true
-          description: date for query transaction history retrieval.
+          
       produces:
         - application/json
       responses:
@@ -308,9 +308,11 @@ definitions:
     properties:
       email:
         type: string
+        format: email
         description: user email
       password:
         type: string
+        format: password
         description: user password
       firstName:
         type: string
@@ -322,9 +324,11 @@ definitions:
     properties:
       email:
         type: string
+        format: email
         description: user email
       password:
         type: string
+        format: password
         description: user password
   LoginResponse:
     type: object

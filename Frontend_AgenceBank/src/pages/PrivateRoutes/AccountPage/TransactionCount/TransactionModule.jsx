@@ -57,15 +57,15 @@ export default function TransactionModule({
           </div>
         </div>
         {/* Transaction description */}
-        <div className={style.description}>{description}</div>
+        <div className={style.description}><p>{description}</p></div>
         {/* Transaction amount */}
-        <div className={style.amount}>$ {amount}</div>
+        <div className={style.amount}><p>$ {amount}</p></div>
         {/* Transaction balance */}
-        <div className={style.balance}>$ {balance}</div>
+        <div className={style.balance}><p>$ {balance}</p></div>
       </div>
       <div className={collapsed}>
         {/* Transaction Type */}
-        <p className={style.transactionType}>Transaction Type: {transactionType}</p>
+        <p className={style.transactionType}>{`Transaction Type: ${transactionType}`}</p>
         {/* Transaction Category with an edit pencil icon */}
         <p className={style.category}>
           Category: {category}

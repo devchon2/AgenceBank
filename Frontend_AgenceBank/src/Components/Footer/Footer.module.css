@@ -4,5 +4,12 @@
     align-items: flex-start;
     border-top: 2px solid #ccc;
     padding: 2rem 0 1.5rem;
+    position: relative;
+    bottom: 0;
 }
 
+@media (max-width: 424px){
+ .footer{
+    font-size: 60%;
+}
+}

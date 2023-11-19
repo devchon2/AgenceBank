@@ -56,3 +56,39 @@
     text-decoration: none;
   }
   
+
+  @media (max-width:767px){
+    .account {
+      flex-direction: column;
+      
+    }
+    .accountCta {
+      margin:15px auto 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .transactionBtn{
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .accountCount{
+      margin:5px 0;
+      font-size: 1.5rem;
+    }
+
+    .accountTitle{
+      font-size: 0.8rem;
+    }
+
+    .accountContainer{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+  }

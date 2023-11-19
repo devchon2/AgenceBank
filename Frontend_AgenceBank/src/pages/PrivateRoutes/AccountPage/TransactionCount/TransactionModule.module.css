@@ -70,12 +70,15 @@
   flex-direction: column;
   width: 25%;
   height: 100%;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 /* Styling for text within expanded elements */
 .expanded p {
   margin-left: 100px;
   width: 100%;
+  height: 10px;
 }
 
 /* Styling for the arrow icon */
@@ -99,7 +102,6 @@
   position: relative;
   left: 25px;
   display: flex;
-  width: 100%%; /* Typo, should be 100% */
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -118,6 +120,7 @@
 .transactionType {
   display: flex;
   height: 100%;
+  width: 125%;
   align-items: flex-start;
   margin: 10px 0;
   text-align: center;
@@ -130,6 +133,10 @@
   align-items: flex-start;
   margin: 10px 0;
   text-align: center;
+}
+
+.account div p {
+  font-size: 75%;
 }
 
 /* Styling for the amount element */
@@ -148,4 +155,73 @@
   left: 10px;
   width: 20px;
   height: 20px;
+}
+
+@media (max-width: 991px) {
+  .expanded {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  .account div p {
+    font-size: 70%;
+  }
+
+  /* Styling for the dateWrapper element */
+  .dateWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0 10px 20px;
+  }
+
+  .arrow {
+    position: relative;
+    left: -10px;
+  }
+
+  .expanded {
+    padding-left: 0px;
+  }
+
+  .expanded p {
+    margin-left: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .expanded {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  .account div p {
+    font-size: 50%;
+  }
+
+  /* Styling for the dateWrapper element */
+  .dateWrapper {
+    margin: 0px;
+  }
+
+  .arrow {
+    width: 10px;
+    position: relative;
+    left: 10px;
+  }
+
+  .expanded {
+    padding-left: 0px;
+  }
+
+  .expanded p {
+    margin-left: 35px;
+  }
+}
+
+@media (max-width: 375px) {
+  .dateWrapper p {
+    font-size: 10%;
+  }
 }

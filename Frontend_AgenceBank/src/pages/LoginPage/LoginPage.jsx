@@ -3,11 +3,11 @@ import { fetch_Token } from "../../Services/login.service.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetch_UserInfos } from "../../Services/login.service.js";
 import { set_Login } from "../../Redux/AuthReducer/AuthSlice.js";
 import { set_User } from "../../Redux/UserReducer/UserSlice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 /**
  * Component for displaying an error message when credentials are invalid.
@@ -40,6 +40,18 @@ export default function LoginPage() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+    const TokenInState = useSelector((state) => state.login.token);
+
+
+  useEffect(() => {
+
+  console.log(TokenInState)
+  if (TokenInState) {
+    navigate("/profile");
+  }
+}, [TokenInState, navigate]);
+
+  
 
   /**
    * Function to handle the "Remember me" checkbox.
@@ -90,7 +102,7 @@ export default function LoginPage() {
     return;
   };
 
-  return (
+    return (
     <main className={style.bg_dark}>
   <div className={style.signIn_Container}>
     {/* User icon */}
