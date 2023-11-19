@@ -154,16 +154,23 @@
   margin-right: 0.5rem;
 }
 
-
 @media (max-width: 425px) {
-  
+  .header {
+    padding: 15px;
+  }
+
+  .header > a {
+    margin: 0px;
+    padding: 0 0;
+    max-width: 50%;
+  }
+
   .header_Logo {
     display: flex;
     align-items: center;
-    max-width: 100%;
-    width: 200px;
+    width: 80%;
   }
-  
+
   .header_ProfileBtn {
     display: flex;
     align-items: center;
@@ -180,19 +187,22 @@
     font-weight: bold;
     color: #2c3e50;
     text-decoration: none;
-    margin:0 0.5rem;
+    margin: 0 0.25rem;
+    font-size: 0.75rem;
+    width: auto;
+    text-wrap: nowrap;
   }
   .header_Link:hover {
     color: #2c3e50;
     text-decoration: underline;
   }
   .header_Login_Icon {
-    margin-right: 0.2rem;
+    margin-right: 0;
   }
   .header_Nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-right: 0.5rem;
+    justify-content: flex-end;
+    margin-right: 0.25rem;
   }
 }

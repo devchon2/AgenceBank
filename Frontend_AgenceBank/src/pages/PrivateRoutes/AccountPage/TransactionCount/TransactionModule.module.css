@@ -78,7 +78,7 @@
 .expanded p {
   margin-left: 100px;
   width: 100%;
-  height:10px;
+  height: 10px;
 }
 
 /* Styling for the arrow icon */
@@ -120,7 +120,7 @@
 .transactionType {
   display: flex;
   height: 100%;
-  width:125%;
+  width: 125%;
   align-items: flex-start;
   margin: 10px 0;
   text-align: center;
@@ -157,39 +157,71 @@
   height: 20px;
 }
 
-
-@media (max-width : 991px){
-  .expanded{
+@media (max-width: 991px) {
+  .expanded {
     margin-left: 0%;
-    width:100%;
+    width: 100%;
   }
 
   .account div p {
     font-size: 70%;
   }
-  
+
   /* Styling for the dateWrapper element */
-.dateWrapper {
-  display: flex;
-  width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 10px 0 10px 20px;
+  .dateWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0 10px 20px;
+  }
+
+  .arrow {
+    position: relative;
+    left: -10px;
+  }
+
+  .expanded {
+    padding-left: 0px;
+  }
+
+  .expanded p {
+    margin-left: 80px;
+  }
 }
 
-.arrow{
-  position: relative;
-  left: -10px;
+@media (max-width: 767px) {
+  .expanded {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  .account div p {
+    font-size: 50%;
+  }
+
+  /* Styling for the dateWrapper element */
+  .dateWrapper {
+    margin: 0px;
+  }
+
+  .arrow {
+    width: 10px;
+    position: relative;
+    left: 10px;
+  }
+
+  .expanded {
+    padding-left: 0px;
+  }
+
+  .expanded p {
+    margin-left: 35px;
+  }
 }
 
-.expanded{
-  padding-left: 0px
+@media (max-width: 375px) {
+  .dateWrapper p {
+    font-size: 10%;
+  }
 }
-
-.expanded p {
-  margin-left:80px;
-  
-}
-
-}
-

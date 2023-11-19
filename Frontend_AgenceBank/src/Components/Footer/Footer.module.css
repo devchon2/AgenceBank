@@ -8,3 +8,8 @@
     bottom: 0;
 }
 
+@media (max-width: 424px){
+ .footer{
+    font-size: 60%;
+}
+}
