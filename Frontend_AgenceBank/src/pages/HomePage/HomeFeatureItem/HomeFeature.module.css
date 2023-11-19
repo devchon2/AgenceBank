@@ -8,6 +8,7 @@
   align-items: center;
   width: 100%;
   padding: 2.5rem;
+  box-shadow: 10px 15px 10px 1px rgba(0, 0, 0, 0.35);
 }
 
 /* Styles for the feature icon */
@@ -25,8 +26,6 @@
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  
-
 }
 
 /* Styles for the feature subtitle */
@@ -38,36 +37,46 @@
   line-height: 1.5;
 }
 
-
-@media (max-width: 767px){
-
-  .feature_item{
-    flex-direction:row;
-    position: relative;
+@media (max-width: 767px) {
+  .feature_item {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #fff;
-    margin:5px 0;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    margin: 5px auto;
+    margin: 20px 0;
+    padding: 50px;
+    height: 60vw;
+    width: 60vw;
+    border: 15px solid #00bc77;
+    border-radius: 50%;
   }
 
   .feature_icon {
-    width: 70px;
-    border: 3px solid #00bc77;
-    border-radius: 50%;
-    padding: 0.8rem;
-    margin: 2rem;
-    position:relative;
-    top:-20px;
+    position: relative;
+    top: -30px;
+    width: 60%;
+    border: unset;
+    margin-bottom: 0rem;
+    padding: none;
   }
 
-  .feature_title{
-    text-align: center;;
-    position: absolute;
-    top:3rem;
-    width:100%;
-  }
-
-  .feature_subtitle{
+  .feature_title {
     text-align: center;
-    width:100%;
+    position: relative;
+    top: -30px;
+    font-size: 80%;
+
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .feature_subtitle {
+    text-align: center;
+    position: relative;
+    top: -30px;
+    font-size: 70%;
+    width: 100%;
+    background-color: transparent;
   }
 }
