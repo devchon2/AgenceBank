@@ -70,6 +70,8 @@
   flex-direction: column;
   width: 25%;
   height: 100%;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 /* Styling for text within expanded elements */
@@ -99,7 +101,6 @@
   position: relative;
   left: 25px;
   display: flex;
-  width: 100%%; /* Typo, should be 100% */
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -118,6 +119,7 @@
 .transactionType {
   display: flex;
   height: 100%;
+  width:125%;
   align-items: flex-start;
   margin: 10px 0;
   text-align: center;
@@ -130,6 +132,10 @@
   align-items: flex-start;
   margin: 10px 0;
   text-align: center;
+}
+
+.account div p {
+  font-size: 75%;
 }
 
 /* Styling for the amount element */
@@ -149,3 +155,18 @@
   width: 20px;
   height: 20px;
 }
+
+
+@media (max-width : 991px){
+  .expanded{
+    margin-left: 0%;
+    width:100%;
+  }
+
+  .account div p {
+    font-size: 70%;
+  }
+  
+  
+}
+

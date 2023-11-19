@@ -10,4 +10,11 @@
 
 .featuresSection{
   display: flex;
+  width:100%;
+}
+
+@media (max-width:424px) {
+  .featuresSection{
+   flex-direction: column;
+  }
 }

@@ -114,3 +114,20 @@ form {
   border: none;
   text-decoration: underline;
 }
+
+
+@media (max-width: 991px) {
+  
+
+  .bg_dark {
+    flex-grow: 2;
+    display:flex;
+    justify-content: center;
+
+    align-items: center;
+  }
+
+  .signIn_Container {
+    margin-top: 0;
+  }
+}
