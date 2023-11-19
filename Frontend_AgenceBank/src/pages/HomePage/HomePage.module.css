@@ -13,7 +13,7 @@
   width:100%;
 }
 
-@media (max-width:424px) {
+@media (max-width:767px) {
   .featuresSection{
    flex-direction: column;
   }
