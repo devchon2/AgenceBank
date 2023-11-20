@@ -1,0 +1,134 @@
+/* CSS styles for the HomeFeature component */
+
+/* Styles for the feature item container */
+.feature_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 2.5rem;
+}
+
+/* Styles for the feature icon */
+.feature_icon {
+  width: 150px;
+  border: 10px solid #00bc77;
+  border-radius: 50%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Styles for the feature title */
+.feature_title {
+  color: rgb(34, 34, 34);
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Styles for the feature subtitle */
+.feature_subtitle {
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .feature_item {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    margin: 5px auto;
+    margin: 20px 0;
+    padding: 50px;
+    height: 60vw;
+    width: 60vw;
+    border: 15px solid #00bc77;
+    border-radius: 50%;
+    box-shadow: 10px 15px 10px 1px rgba(0, 0, 0, 0.35);
+
+  }
+
+  .feature_icon {
+    position: relative;
+    top: -30px;
+    width: 60%;
+    border: unset;
+    margin-bottom: 0rem;
+    padding: none;
+  }
+
+  .feature_title {
+    text-align: center;
+    position: relative;
+    top: -30px;
+    font-size: 73%;
+
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .feature_subtitle {
+    text-align: center;
+    position: relative;
+    top: -30px;
+    font-size: 70%;
+    width: 100%;
+    background-color: transparent;
+  }
+}
+
+@media (max-width: 424px){
+
+  .feature_item {
+    display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem;
+  border:none;
+  box-shadow: none;
+  height:unset;
+  margin: 0;
+  border-radius:0;
+  
+
+  }
+
+  .feature_icon {
+    position: relative;
+    top: 0px;
+    width: 50%;
+    border: unset;
+    margin-bottom: 0rem;
+    padding: 5px;;
+    border-radius: 50%;
+    border: 10px solid #00bc77;
+  }
+
+  .feature_title {
+    text-align: center;
+    position: relative;
+    top: 10px;
+    font-size: 73%;
+
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .feature_subtitle {
+    text-align: center;
+    position: relative;
+    top: 10px;
+    font-size: 70%;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  
+}

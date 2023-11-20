@@ -1,0 +1,89 @@
+/* Styling for the main container */
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #2c3e50;
+  flex: 1;
+  background-color: #12002b;
+}
+
+/* Styling for the available balance section */
+.available {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0px;
+  border: 1px solid #2c3e50;
+  padding: 25px 50px;
+  background-color: #fff;
+}
+
+/* Styling for the transaction section */
+.transactionSection {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 20px;
+  padding-top: 50px;
+  flex-grow: 1;
+}
+
+/* Styling for the title */
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Styling for the available balance amount */
+.amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 0px 0px 5px #fff;
+}
+
+/* Styling for the header of the transaction table */
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 0;
+  text-transform: uppercase;
+}
+
+/* Styling for the individual header columns */
+.header h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+}
+
+@media (max-width:767px) {
+  .transactionSection {
+    width: 100%;
+  }
+
+  .header {
+    font-size: 40%;
+    font-weight: 500;
+  }
+}
