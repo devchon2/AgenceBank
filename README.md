@@ -138,7 +138,7 @@ npm run populate-db
 MIT — voir le fichier `LICENSE` à la racine du dépôt. :contentReference[oaicite:11]{index=11}
 
 ## 📫 Contact
-Rachid Chon — `cgpt1euro@rchon-dev.fr` — https://github.com/devchon2/
+Rachid Chon — `rchon@rchon-dev.fr` — https://github.com/devchon2/
 
 ---
 
@@ -264,6 +264,6 @@ npm run populate-db
 MIT — see `LICENSE`. :contentReference[oaicite:23]{index=23}
 
 ## 📫 Contact
-Rachid Chon — `cgpt1euro@rchon-dev.fr` — https://github.com/devchon2/
+Rachid Chon — `rchon@rchon-dev.fr` — https://github.com/devchon2/
 
 </details>
