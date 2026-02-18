@@ -36,7 +36,7 @@
     "typescript": "^5.2.2",
     "web-vitals": "3.5.0"
   },
-  "homepage": "https://rachi.github.io/AgenceBank/",
+  "homepage": "https://devchon2.github.io/AgenceBank/",
   "scripts": {
     "start": "rsbuild dev",
     "build": "rsbuild build",

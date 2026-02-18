@@ -12,6 +12,6 @@ export default defineConfig({
         template: './public/index.html',
     },
     output: {
-        assetPrefix: './',
+        assetPrefix: '/AgenceBank/',
     },
 });
