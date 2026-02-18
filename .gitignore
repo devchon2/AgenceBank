@@ -1,6 +1,6 @@
 Frontend_Agence_Bank/node_modules
 Backend_Agence_Bank/node_modules
-
+.agent/
 # IDE files
 .idea
 

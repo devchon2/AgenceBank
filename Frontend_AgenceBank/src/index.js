@@ -1,6 +1,6 @@
 import React from 'react';
-import {createRoot} from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { Provider } from 'react-redux';
@@ -13,8 +13,8 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   // Wrap the application with a Redux provider to provide the store
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
 );
